@@ -1,0 +1,8 @@
+10,000 data set
+
+select - 3.800 sec
+bubble - 18.820 sec
+optimized bubble - 11.530 sec
+insertion - 5.510 sec
+merge - 0.200 sec
+C++ STL - 0.020 sec

@@ -1,0 +1,953 @@
+bplist00—_WebMainResource’	
+_WebResourceFrameName^WebResourceURL_WebResourceData_WebResourceMIMEType_WebResourceTextEncodingNameP_ohttps://ilearn.ucr.edu/bbcswebdav/pid-1830641-dt-content-rid-9531735_1/courses/CS_012_001_13W/assn4%283%29.htmlOÜç<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html><head>
+	<style type="text/css">
+	.amp {
+		font-family: √É¬¢&#8364;&#732;Helvetica Neue√É¬¢&#8364;&#8482;, Helvetica, Arial, sans-serif;
+		font-weight: bold;
+	}
+	</style>
+	 <title>assn 4</title>
+</head>
+	 
+<body>
+<h1><font color="red">Collaboration Policy</font></h1>
+<p>Collaboration between students on programming assignments is NOT allowed under any 
+circumstances - you may not even discuss your work with others; you may NOT get coding 
+assistance, or copy code, from ANY outside source (books, web sites, current or past 
+students, your own previous submissions if you are repeating the course, etc.). We 
+test every submission for copying and when we find it we treat it as flagrant academic 
+dishonesty on the part of all parties involved, regardless of their roles as provider 
+or consumer. The penalty is generally instant failure in the course, in addition to 
+the usual sanctions applied by the Student Conduct office.</p>
+
+<p>As you can see from the submission header below, we ask you to essentially take an 
+oath that the code you submit is entirely your own work.</p>
+
+<p>At the same time, we certainly understand very well that you will frequently need help 
+completing your programming assignment, so we provide channels where you may get that 
+help in a way which will strengthen your programming skills: instructor and TA office 
+hours, and the discussion forums where you can ask all the questions you want about 
+the assignment, and even help others with the understanding that you have gained (but 
+not, of course, with any actual code).
+</p>
+
+
+<h1>Programming Assignment 4 - IntVector</h1>
+<div>
+	<div class="section">
+   <h2>Problem Definition</h2>
+		<p>
+		You are going to build a smaller, simpler version of the STL vector class
+		that is can only store integers. Appropriately, it will be called IntVector.
+		This class will encapsulate a dynamically allocated array of integers.</p> 
+		
+		<p>For now, we will not be implementing iterators (a vital component of all STL
+		container classes). Apart from that, though, though, your member functions should 
+		work just like the equivalent STL vector class member functions.<br>
+		See <a href="http://www.cplusplus.com/reference/stl/vector/">here</a>
+		for the technical specs of each member function of the vector class.</p>
+   </div>
+	
+   <div class="section" id="filenames">
+	<h2>File Naming Specifications</h2>
+      <p>
+		The files that you submit should be named <b>main.cpp</b>, <b>intvector.h</b>, 
+		and <b>intvector.cpp</b>.<br>
+		<font color="red">The names are case-sensitive.</font></p>
+   </div>
+	
+   <div class="section">
+	<h2>IntVector Class Interface</h2>
+		<font color="red">Changing the public interface will result in -10 points.</font><br>
+		<div style="border-style: solid; border-width: 1px; padding: 15px; background-color: rgb(238, 238, 255);">
+
+			<div class="subsection">
+         <h3 style="margin-left: 0pt; text-decoration: underline;">Private Data Fields</h3>
+         <ul>
+				<li>vsize - unsigned : <i>the size of the vector (how many ints does it 
+				currently hold?)<br></i></li>
+				<li>vcapacity - unsigned : <i>the capacity of vector (how many ints 
+				<u>could</u> it hold?).<br></i></li>
+				<li>data - int* : <span style="font-style: italic;">the location of the data 
+				(array of integers) stored "in the vector".</span><br></li>
+			</ul>
+			</div>
+
+			<div class="subsection">
+			<h3 style="margin-left: 0pt; text-decoration: underline;">Public Member Functions</h3>
+			<p>This is the public interface of the class - the contract with the user.</p>
+				<div style="margin-left: 2em;">
+				<h3 style="margin-left: 0pt; text-decoration: underline;">Constructors &amp; Destructors</h3>
+					<dl>
+						<dt><b>IntVector( )</b></dt>
+						<dd>
+							<i>The default constructor. This function should set both the size and
+							capacity to 0 and will not allocate any memory to store integers
+							(make sure you do not have an uninitialized pointer!)<br></i>
+						</dd>
+						<dt><b>IntVector( unsigned size )</b></dt>
+						<dd>
+							<i>Sets both the size and capacity to the value of the parameter passed in and dynamically 
+							allocates an array of that size. All elements must be initialized to 0.</i>
+						</dd><br>
+						<dt><b>IntVector( unsigned size, int value )</b></dt>
+						<dd>
+							<i>Sets both the size and capacity to the value of the parameter passed in and dynamically 
+							allocates an array of that size. This function should initialize all elements of 
+							the array to the value of the 2nd parameter.</i>
+						</dd><br>
+						<dt><b>~IntVector( ) </b></dt>
+						<dd>
+							<i>Destructor. This function should deallocate all remaining dynamically allocated memory.</i>
+						</dd><br>
+					</dl>
+				</div>
+				
+				<div style="margin-left: 2em;">
+				<h3 style="margin-left: 0pt; text-decoration: underline;">Accessors</h3>
+					<dl>
+						<dt><b>unsigned size( ) const</b></dt>
+						<dd>
+							<i>This function returns the current size (not the capacity) of the IntVector object, 
+							which is the value stored in the size data field.</i>
+						</dd><br>
+						<dt><b>unsigned capacity( ) const</b></dt>
+						<dd>
+							<i>This function returns the current capacity (not the size) of the IntVector object, 
+							which is the value stored in the capacity data field.</i>
+						</dd><br>
+						<dt><b>bool empty( ) const</b></dt>
+						<dd>
+							<i>Returns whether the vector is empty (the size field is 0).</i>
+						</dd><br>
+						<dt><b>const int <span class="amp">&amp;</span> at( unsigned index ) const </b></dt>
+						<dd>
+							<i>This function will return the <span class="warn">value</span> located at the slot 
+							specified by "index": Note that the return value is "const" - i.e. it is returned as an "r-value"</i>
+							Your function should call exit(1) <i>(i.e. cause the program to terminate cleanly, with a 
+							signal to  the Operating System that there was a failure of some sort)</i> if an index 
+							greater than or equal to the size is passed in. Because the index is an unsigned (rather 
+							than just int) the compiler will not allow for a negative value to be passed in.
+						</dd><br>
+						<dt><b>const int <span class="amp">&amp;</span> operator[]( unsigned index )const</b></dt>
+						<dd>
+							<i>This function overloads the subscript operator to return the <span class="warn">
+							value</span> stored at the passed in index position as an r-value, just like the at function.<br>
+							Unlike the at function, however, it does <span class="warn">NOT</span> check if index 
+							is valid or not.</i>
+						</dd><br>
+						<dt><b>const int <span class="amp">&amp;</span> front( ) const</b></dt>
+						<dd>
+							<i>This function will return the element stored at the first index by 
+							<span class="warn">value</span> (i.e. as an r-value, just like at and []).</i>
+						</dd><br>
+						<dt><b>const int <span class="amp">&amp;</span> back( ) const</b></dt>
+						<dd>
+							<i>This function will return the element stored at the last index by 
+							<span class="warn">value</span>  (i.e. as an r-value, just like at and []).</i>
+						</dd>
+					</dl>
+				</div>
+				
+				<div style="margin-left: 2em;">
+				<h3 style="margin-left: 0pt; text-decoration: underline;">Mutators</h3>
+					<dl>
+						<dt><b>void insert( unsigned index, int data )</b></dt>
+						<dd>
+							<i>This function inserts data at location index. To do this, all values currently at 
+							position index and greater are shifted to the right by 1 (i.e. each element takes the 
+							place of the element right after its current position).<br> 
+							size is increased by 1: If size becomes larger than capacity, this function needs to 
+							double the capacity.<br>
+							In other words, if capacity and size are both 20 when this function is called, 
+							capacity will become 40 and size will be set to 21.<br>
+							Since other functions will also potentially need to expand (double) the capacity, 
+							implement the private helper function named expand (see above) to do this for you. 
+							This function should call exit(1) if an index value greater than size is passed in.</i>
+						</dd><br>
+						<dt><b>void erase( unsigned index )</b></dt>
+						<dd>
+							<i>This function removes the value at position index and shifts all of the values at 
+							positions greater than index to the left by one (to the element right before its current position).<br>
+							Size is decreased by 1. This function should call exit(1) if an index value greater 
+							than or equal to size is passed in.</i>
+						</dd><br>
+						<dt><b>void push_back( int data )</b></dt>
+						<dd>
+							<i>This function inserts a value at the back end of the array.<br>
+							Size is increased by 1: If size becomes larger than capacity, this function needs to 
+							double the capacity.<br>
+							In other words, if capacity and size are both 20 when this function is called, 
+							capacity will become 40 and size will be set to 21.<br>
+							<span class="warn">Special case:</span> If the capacity is 0, expand the vector 
+							so that it has allocated space of length 1 and set vcapacity to 1. (You can use expand(int))<br>
+							Since other functions will also potentially need to expand (double) the capacity, 
+							implement the private helper function named expand (see below) to do this for you.</i>
+						</dd><br>
+						<dt><b>void pop_back()</b></dt>
+						<dd>
+							<i>This function just needs to decrease size by 1.<br>
+							This function should call exit(1) if pop_back is called on an empty vector.</i>
+						</dd><br>
+						<dt><b>void clear()</b></dt>
+						<dd>
+							<i>This function reduces the size of the vector to 0.</i>
+						</dd><br>
+						<dt><b>void resize( unsigned sz )</b></dt>
+						<dd>
+							<i>This function resizes the vector to contain sz elements.<br>
+							If sz is smaller than the current size, this function just reduces the value of size to sz.<br>
+							If sz is greater than the current size, then the appropriate number of elements are inserted 
+							at the end of the vector, giving all of the new elements a value of 0.<br>
+							If the new value of size will be larger than capacity, then the capacity should be expanded 
+							by either doubling (expand()) or by increasing the capacity by a specific amount 
+							(expand( sz - capacity )), whichever results in the largest capacity.</i>
+						</dd><br>
+						<dt><b>void resize( unsigned sz, int value )</b></dt>
+						<dd>
+							<i>This function resizes the vector to containt sz elements.<br>
+							If sz is smaller than the current size, this function just reduces the value of size to sz.<br>
+							If sz is greater than the current size, then the appropriate number of elements are inserted 
+							at the end of the vector, giving all of the new elements the value passed in through the 
+							2nd parameter (value).<br>
+							If the new value of size will be larger than capacity, then the capacity should be expanded 
+							by either doubling (expand()) or by increasing the capacity by a specific amount 
+							(expand( sz - capacity )), whichever results in the largest capacity.</i>
+						</dd><br>
+						<dt><b>void reserve( unsigned n )</b></dt>
+						<dd>
+							<i>This function requests that the capacity (the size of the dynamically allocated array) 
+							be set to n <b><i>at minimum</i></b>. This informs the vector of a planned increase in size, 
+							although notice that the parameter n informs of a minimum, so the resulting capacity may be 
+							any capacity equal or larger than this.<br> 
+							This function should <b>NOT</b> ever reduce the size of the vector. If n is larger than the 
+							current capacity then the capacity should be expanded by either doubling (expand())
+							or by increasing the capacity by a specific amount (expand( n - capacity )), 
+							whichever results in the largest capacity.<br>
+							In any case, a call to this function never affects the elements contained in the vector, 
+							nor the vector size.</i>
+						</dd><br>
+						<dt><b>void assign( unsigned n, int value )</b></dt>
+						<dd>
+							<i> Assigns new content to the vector object, dropping all the elements contained in the 
+							vector before the call and replacing them by those specified by the parameters. The new 
+							value of size will be n and all values stored in the vector will have the value of the 
+							2nd parameter.<br>
+							If the new value of size will be larger than capacity, then the capacity should be 
+							expanded by either doubling (expand()) or by increasing the capacity by a specific amount 
+							(expand( size - capacity )), whichever results in the largest capacity.</i>
+						</dd><br>
+						<dt><b>int <span class="amp">&amp;</span> at( unsigned index )</b></dt>
+						<dd>
+							<i>This function will return a <span class="warn">reference</span> to the value stored 
+							at the element at the passed in index position. 
+                            Unlike the equivalent accessor function, this is an "l-value".<br>
+							Your function should call exit(1) <i>(i.e. cause the program to terminate cleanly, with a 
+							signal to  the Operating System that there was a failure of some sort)</i> if an index 
+							greater than or equal to the size is passed in. Because the index is an unsigned (rather 
+							than just int) the compiler will not allow for a negative value to be passed in.</i>
+						</dd><br>
+						<dt><b>int <span class="amp">&amp;</span> operator[]( unsigned index )</b></dt>
+						<dd>
+							<i>This function overloads the subscript operator and returns a 
+							<span class="warn">reference</span> to the value stored at the passed in index 
+							position (i.e. an l-value).<br>
+							Unlike at function, it does <span class="warn">NOT</span> check if index is valid or not.</i>
+						</dd><br>
+						<dt><b>int <span class="amp">&amp;</span> front( )</b></dt>
+						<dd>
+							<i>This function will return the element stored at the first index by 
+							<span class="warn">reference</span> (i.e. as an l-value).</i>
+						</dd><br>
+						<dt><b>int <span class="amp">&amp;</span> back( )</b></dt>
+						<dd>
+							<i>This function will return the element stored at the last index by 
+							<span class="warn">reference</span> (i.e. as an l-value).</i>
+						</dd>
+					</dl>
+            </div>
+			</div>
+			<div class="subsection">
+			<h3 style="margin-left: 0pt; text-decoration: underline;">Private Member Functions</h3>
+			<p>In this assignment you are required to implement these functions.</p>
+				<div style="margin-left: 2em;">
+					<dl>
+						<dt><b>void expand()</b></dt>
+						<dd>
+							<i>This function will double the capacity of the vector. This function should reallocate
+							memory for the dynamically allocated array and update the value of capacity. <br>
+							Make sure you don't create a memory leak here.</i>
+						</dd><br>
+						<dt><b>void expand( unsigned amount )</b></dt>
+						<dd>
+							<i>This function will expand the capacity of the vector by amount passed in. This function should 
+							reallocate memory for the dynamically allocated array and update the value of capacity. <br>
+							Make sure you don't create a memory leak here.</i>
+						</dd>
+					</dl>
+            </div>
+			</div>
+      </div>
+   </div>
+	
+   <div class="section">
+	<h2>Compiling and Testing:</h2>
+		<div class="subsection">
+		<h3>Compiling</h3>
+			<p>You are required to compile all assignments using the flags: -W -Wall -Werror -ansi -pedantic</p>
+			<p>You are also required to be able to compile just the IntVector class without a main function (using the -c flag).</p> 
+		</div>
+		<div class="subsection">
+		<h3>Testing</h3>
+			<p>Whenever you are implementing a class with large number of functions, follow a step-by-step approach and 
+				test your functions frequently. Never implement more than 1 or 2 member functions without fulling testing 
+				them with your test harness before moving on to implement the next function.</p>
+
+			<p>Here is an example test harness. Make sure you extend/modify this to test as many cases you can.</p>
+			<div class="codefile">Sample Test Harness ( main.cpp )</div>
+<pre class="prettyprint">#include "intvector.h"
+
+#include &lt;iostream&gt;
+#include &lt;vector&gt;
+using namespace std;
+ 
+ostream&amp; operator &lt;&lt;(ostream&amp; out, const  IntVector&amp; iv)
+{
+  for(unsigned i = 0; i &lt; iv.size(); ++i)
+		out &lt;&lt; iv.at(i) &lt;&lt; " ";
+  return out;
+}
+
+int main()
+{
+ {
+  IntVector v1;
+  cout &lt;&lt; "Default:\n\tsize: " &lt;&lt; v1.size() 
+		&lt;&lt; "\n\tcapacity: " &lt;&lt; v1.capacity()
+		&lt;&lt; "\n\tempty?: " &lt;&lt; v1.empty()
+		&lt;&lt; endl &lt;&lt; endl;
+ 
+  IntVector v2(10);
+  cout &lt;&lt; "Size 10:\n\tsize: " &lt;&lt; v2.size() 
+		&lt;&lt; "\n\tcapacity: " &lt;&lt; v2.capacity()
+		&lt;&lt; "\n\tempty?: " &lt;&lt; v2.empty()
+		&lt;&lt; endl &lt;&lt; endl;
+
+  IntVector v3(15,2);
+  cout &lt;&lt; "Size 15 - value 2:\n\tsize: " &lt;&lt; v3.size() 
+		&lt;&lt; "\n\tcapacity: " &lt;&lt; v3.capacity()
+		&lt;&lt; "\n\tempty?: " &lt;&lt; v3.empty()
+		&lt;&lt; endl &lt;&lt; endl;
+
+  cout &lt;&lt; "const at functions:\n";
+  cout &lt;&lt; "v1 at: \n\t" &lt;&lt; v1;
+  cout &lt;&lt; endl &lt;&lt; endl;
+
+  cout &lt;&lt; "v2 at: \n\t" &lt;&lt; v2;
+  cout &lt;&lt; endl &lt;&lt; endl;
+
+  cout &lt;&lt; "v3 at: \n\t" &lt;&lt; v3;
+  cout &lt;&lt; endl &lt;&lt; endl;
+
+  cout &lt;&lt; "const front/back  v3:";
+  cout &lt;&lt; "\n\tfront: " &lt;&lt; v3.front()
+		&lt;&lt; "\n\tback: " &lt;&lt; v3.back()
+		&lt;&lt; endl &lt;&lt; endl;
+
+  cout &lt;&lt; "push_back:";
+  v1.push_back(1);
+  cout &lt;&lt; "\n\tv1.push_back(1): " &lt;&lt; flush &lt;&lt; v1.at(v1.size()-1);
+  v1.push_back(100);
+  cout &lt;&lt; "\n\tv1.push_back(100): " &lt;&lt; flush &lt;&lt; v1.at(v1.size()-1);
+  cout &lt;&lt; "\n\tv1.size(): " &lt;&lt; v1.size() 
+		&lt;&lt; " -  v1.capacity(): " &lt;&lt; v1.capacity();
+  v1.push_back(1000);
+  cout &lt;&lt; "\n\tv1.push_back(1000): " &lt;&lt; flush &lt;&lt; v1.at(v1.size()-1);
+  cout &lt;&lt; "\n\tv1.size(): " &lt;&lt; v1.size() 
+		&lt;&lt; " -  v1.capacity(): " &lt;&lt; v1.capacity();
+
+  v2.push_back(1);
+  cout &lt;&lt; "\n\tv2.push_back(1): " &lt;&lt; flush &lt;&lt; v2.at(v2.size()-1);
+  v2.push_back(100);
+  cout &lt;&lt; "\n\tv2.push_back(100): " &lt;&lt; flush &lt;&lt; v2.at(v2.size()-1);
+  cout &lt;&lt; "\n\tv2.size(): " &lt;&lt; v2.size() 
+		&lt;&lt; " -  v2.capacity(): " &lt;&lt; v2.capacity();
+  v2.push_back(1000);
+  cout &lt;&lt; "\n\tv2.push_back(1000): " &lt;&lt; flush &lt;&lt; v2.at(v2.size()-1);
+  cout &lt;&lt; "\n\tv2.size(): " &lt;&lt; v2.size() 
+		&lt;&lt; " -  v2.capacity(): " &lt;&lt; v2.capacity();
+  cout &lt;&lt; endl &lt;&lt; endl;
+
+  cout &lt;&lt; "pop_back:";
+  cout &lt;&lt; "\n\tv1.size() - " &lt;&lt; v1.size();
+  v1.pop_back();
+  cout &lt;&lt; "\n\tv1.pop_back(): " &lt;&lt; flush 
+		&lt;&lt; "  v1.size() - " &lt;&lt; v1.size();
+  v1.pop_back();
+  cout &lt;&lt; "\n\tv1.pop_back(): " &lt;&lt; flush 
+		&lt;&lt; "  v1.size() - " &lt;&lt; v1.size();
+  v1.pop_back();
+  cout &lt;&lt; "\n\tv1.pop_back(): " &lt;&lt; flush 
+		&lt;&lt; "  v1.size() - " &lt;&lt; v1.size();
+  cout &lt;&lt; endl &lt;&lt; endl;
+
+  cout &lt;&lt; "reserve:";
+  cout &lt;&lt; "\n\tv2.size() - " &lt;&lt; v2.size();
+  cout &lt;&lt; "\n\tv2.capacity() - " &lt;&lt; v2.capacity();
+  v2.reserve(2);
+  cout &lt;&lt; "\n\tv2.reserve(2)" 
+		&lt;&lt; "\n\tv2.capacity() - " &lt;&lt; v2.capacity();
+  v2.reserve(30);
+  cout &lt;&lt; "\n\tv2.reserve(30)" 
+		&lt;&lt; "\n\tv2.capacity() - " &lt;&lt; v2.capacity();
+  v2.reserve(85);
+  cout &lt;&lt; "\n\tv2.reserve(85)" 
+		&lt;&lt; "\n\tv2.capacity() - " &lt;&lt; v2.capacity()
+		&lt;&lt; "\n\tv2.size() - " &lt;&lt; v2.size();
+  cout &lt;&lt; endl &lt;&lt; endl;
+
+  cout &lt;&lt; "resize(sz,val):";
+  cout &lt;&lt; "\n\tv3.size() - " &lt;&lt; v3.size();
+  cout &lt;&lt; "\n\tv3.capacity() - " &lt;&lt; v3.capacity();
+  cout &lt;&lt; "\n\tv3.at(11) - " &lt;&lt; v3.at(11);
+  v3.resize( 12, 50 );
+  cout &lt;&lt; "\n\n\tv3.resize( 12, 50 )"
+		&lt;&lt; "\n\t\tv3.size() - " &lt;&lt; v3.size()
+		&lt;&lt; "\n\t\tv3.capacity() - " &lt;&lt; v3.capacity()
+		&lt;&lt; "\n\t\tv3.at(11) - " &lt;&lt; v3.at(11);
+  v3.resize( 14, 500 );
+  cout &lt;&lt; "\n\n\tv3.resize( 14, 500 )"
+		&lt;&lt; "\n\t\tv3.size() - " &lt;&lt; v3.size()
+		&lt;&lt; "\n\t\tv3.capacity() - " &lt;&lt; v3.capacity()
+		&lt;&lt; "\n\t\tv3.at(11) - " &lt;&lt; v3.at(11)
+		&lt;&lt; "\n\t\tv3.at(12) - " &lt;&lt; v3.at(12)
+		&lt;&lt; "\n\t\tv3.at(13) - " &lt;&lt; v3.at(13);
+  v3.resize( 32, 5000 );
+  cout &lt;&lt; "\n\n\tv3.resize( 32, 5000 )"
+		&lt;&lt; "\n\t\tv3.size() - " &lt;&lt; v3.size()
+		&lt;&lt; "\n\t\tv3.capacity() - " &lt;&lt; v3.capacity()
+		&lt;&lt; "\n\t\tv3.at(11) - " &lt;&lt; v3.at(11)
+		&lt;&lt; "\n\t\tv3.at(13) - " &lt;&lt; v3.at(13)
+		&lt;&lt; "\n\t\tv3.at(14) - " &lt;&lt; v3.at(14)
+		&lt;&lt; "\n\t\tv3.at(30) - " &lt;&lt; v3.at(30)
+		&lt;&lt; "\n\t\tv3.at(31) - " &lt;&lt; v3.at(31);
+  v3.resize( 34, 50000 );
+  cout &lt;&lt; "\n\n\tv3.resize( 34, 50000 )"
+		&lt;&lt; "\n\t\tv3.size() - " &lt;&lt; v3.size()
+		&lt;&lt; "\n\t\tv3.capacity() - " &lt;&lt; v3.capacity()
+		&lt;&lt; "\n\t\tv3.at(11) - " &lt;&lt; v3.at(11)
+		&lt;&lt; "\n\t\tv3.at(13) - " &lt;&lt; v3.at(13)
+		&lt;&lt; "\n\t\tv3.at(14) - " &lt;&lt; v3.at(14)
+		&lt;&lt; "\n\t\tv3.at(31) - " &lt;&lt; v3.at(31)
+		&lt;&lt; "\n\t\tv3.at(32) - " &lt;&lt; v3.at(32)
+		&lt;&lt; "\n\t\tv3.at(33) - " &lt;&lt; v3.at(33);
+  cout &lt;&lt; endl &lt;&lt; endl;
+
+  cout &lt;&lt; "resize(sz):";
+  IntVector v4( 15, 2 );
+  cout &lt;&lt; "\n\tv4.size() - " &lt;&lt; v4.size();
+  cout &lt;&lt; "\n\tv4.capacity() - " &lt;&lt; v4.capacity();
+  cout &lt;&lt; "\n\tv4.at(11) - " &lt;&lt; v4.at(11);
+  v4.resize( 12, 50 );
+  cout &lt;&lt; "\n\n\tv4.resize( 12, 50 )"
+		&lt;&lt; "\n\t\tv4.size() - " &lt;&lt; v4.size()
+		&lt;&lt; "\n\t\tv4.capacity() - " &lt;&lt; v4.capacity()
+		&lt;&lt; "\n\t\tv4.at(11) - " &lt;&lt; v4.at(11);
+  v4.resize( 14, 500 );
+  cout &lt;&lt; "\n\n\tv4.resize( 14, 500 )"
+		&lt;&lt; "\n\t\tv4.size() - " &lt;&lt; v4.size()
+		&lt;&lt; "\n\t\tv4.capacity() - " &lt;&lt; v4.capacity()
+		&lt;&lt; "\n\t\tv4.at(11) - " &lt;&lt; v4.at(11)
+		&lt;&lt; "\n\t\tv4.at(12) - " &lt;&lt; v4.at(12)
+		&lt;&lt; "\n\t\tv4.at(13) - " &lt;&lt; v4.at(13);
+  v4.resize( 32, 5000 );
+  cout &lt;&lt; "\n\n\tv4.resize( 32, 5000 )"
+		&lt;&lt; "\n\t\tv4.size() - " &lt;&lt; v4.size()
+		&lt;&lt; "\n\t\tv4.capacity() - " &lt;&lt; v4.capacity()
+		&lt;&lt; "\n\t\tv4.at(11) - " &lt;&lt; v4.at(11)
+		&lt;&lt; "\n\t\tv4.at(13) - " &lt;&lt; v4.at(13)
+		&lt;&lt; "\n\t\tv4.at(14) - " &lt;&lt; v4.at(14)
+		&lt;&lt; "\n\t\tv4.at(30) - " &lt;&lt; v4.at(30)
+		&lt;&lt; "\n\t\tv4.at(31) - " &lt;&lt; v4.at(31);
+  v4.resize( 34, 50000 );
+  cout &lt;&lt; "\n\n\tv4.resize( 34, 50000 )"
+		&lt;&lt; "\n\t\tv4.size() - " &lt;&lt; v4.size()
+		&lt;&lt; "\n\t\tv4.capacity() - " &lt;&lt; v4.capacity()
+		&lt;&lt; "\n\t\tv4.at(11) - " &lt;&lt; v4.at(11)
+		&lt;&lt; "\n\t\tv4.at(13) - " &lt;&lt; v4.at(13)
+		&lt;&lt; "\n\t\tv4.at(14) - " &lt;&lt; v4.at(14)
+		&lt;&lt; "\n\t\tv4.at(31) - " &lt;&lt; v4.at(31)
+		&lt;&lt; "\n\t\tv4.at(32) - " &lt;&lt; v4.at(32)
+		&lt;&lt; "\n\t\tv4.at(33) - " &lt;&lt; v4.at(33);
+  cout &lt;&lt; endl &lt;&lt; endl;
+
+  cout &lt;&lt; "clear():";
+  cout &lt;&lt; "\n\tv4.size() - " &lt;&lt; v4.size();
+  cout &lt;&lt; "\n\tv4.capacity() - " &lt;&lt; v4.capacity();
+  v4.clear();
+  cout &lt;&lt; "\n\n\tv4.clear()"
+		&lt;&lt; "\n\t\tv4.size() - " &lt;&lt; v4.size()
+		&lt;&lt; "\n\t\tv4.capacity() - " &lt;&lt; v4.capacity();
+
+  cout &lt;&lt; endl &lt;&lt; endl;
+ 
+  cout &lt;&lt; "insert:";
+  IntVector v5;
+  cout &lt;&lt; "\n\tv5.size() - " &lt;&lt; v5.size();
+  cout &lt;&lt; "\n\tv5.capacity() - " &lt;&lt; v5.capacity();
+  v5.insert( 0, 10 );
+  cout &lt;&lt; "\n\n\tv5.insert( 0, 10 )"
+		&lt;&lt; "\n\t\tv5.size() - " &lt;&lt; v5.size()
+		&lt;&lt; "\n\t\tv5.capacity() - " &lt;&lt; v5.capacity()
+		&lt;&lt; "\n\t\tv5.at(0) - " &lt;&lt; v5.at(0);
+  v5.insert( 0, 20 );
+  cout &lt;&lt; "\n\n\tv5.insert( 0, 20 )"
+		&lt;&lt; "\n\t\tv5.size() - " &lt;&lt; v5.size()
+		&lt;&lt; "\n\t\tv5.capacity() - " &lt;&lt; v5.capacity()
+		&lt;&lt; "\n\t\tv5.at(0) - " &lt;&lt; v5.at(0)
+		&lt;&lt; "\n\t\tv5.at(1) - " &lt;&lt; v5.at(1);
+  v5.insert( 1, 30 );
+  cout &lt;&lt; "\n\n\tv5.insert( 1, 30 )"
+		&lt;&lt; "\n\t\tv5.size() - " &lt;&lt; v5.size()
+		&lt;&lt; "\n\t\tv5.capacity() - " &lt;&lt; v5.capacity()
+		&lt;&lt; "\n\t\tv5.at(0) - " &lt;&lt; v5.at(0)
+		&lt;&lt; "\n\t\tv5.at(1) - " &lt;&lt; v5.at(1)
+		&lt;&lt; "\n\t\tv5.at(2) - " &lt;&lt; v5.at(2);
+  v5.insert( 3, 40 );
+  cout &lt;&lt; "\n\n\tv5.insert( 3, 40 )"
+		&lt;&lt; "\n\t\tv5.size() - " &lt;&lt; v5.size()
+		&lt;&lt; "\n\t\tv5.capacity() - " &lt;&lt; v5.capacity()
+		&lt;&lt; "\n\t\tv5.at(0) - " &lt;&lt; v5.at(0)
+		&lt;&lt; "\n\t\tv5.at(1) - " &lt;&lt; v5.at(1)
+		&lt;&lt; "\n\t\tv5.at(2) - " &lt;&lt; v5.at(2)
+		&lt;&lt; "\n\t\tv5.at(3) - " &lt;&lt; v5.at(3);
+  cout &lt;&lt; endl &lt;&lt; endl;
+
+
+  cout &lt;&lt; "erase:";
+  cout &lt;&lt; "\n\tv5.size() - " &lt;&lt; v5.size();
+  cout &lt;&lt; "\n\tv5.capacity() - " &lt;&lt; v5.capacity();
+  v5.erase(1);
+  cout &lt;&lt; "\n\n\tv5.erase(1)"
+		&lt;&lt; "\n\t\tv5.size() - " &lt;&lt; v5.size()
+		&lt;&lt; "\n\t\tv5.capacity() - " &lt;&lt; v5.capacity()
+		&lt;&lt; "\n\t\tv5.at(0) - " &lt;&lt; v5.at(0)
+		&lt;&lt; "\n\t\tv5.at(1) - " &lt;&lt; v5.at(1)
+		&lt;&lt; "\n\t\tv5.at(2) - " &lt;&lt; v5.at(2);
+  v5.erase(2);
+  cout &lt;&lt; "\n\n\tv5.erase(2)"
+		&lt;&lt; "\n\t\tv5.size() - " &lt;&lt; v5.size()
+		&lt;&lt; "\n\t\tv5.capacity() - " &lt;&lt; v5.capacity()
+		&lt;&lt; "\n\t\tv5.at(0) - " &lt;&lt; v5.at(0)
+		&lt;&lt; "\n\t\tv5.at(1) - " &lt;&lt; v5.at(1);
+  v5.erase(0);
+  cout &lt;&lt; "\n\n\tv5.erase(0)"
+		&lt;&lt; "\n\t\tv5.size() - " &lt;&lt; v5.size()
+		&lt;&lt; "\n\t\tv5.capacity() - " &lt;&lt; v5.capacity()
+		&lt;&lt; "\n\t\tv5.at(0) - " &lt;&lt; v5.at(0);
+  v5.erase(0);
+  cout &lt;&lt; "\n\n\tv5.erase(0)"
+		&lt;&lt; "\n\t\tv5.size() - " &lt;&lt; v5.size()
+		&lt;&lt; "\n\t\tv5.capacity() - " &lt;&lt; v5.capacity();
+  cout &lt;&lt; endl &lt;&lt; endl;
+
+  cout &lt;&lt; "assign:";
+  IntVector v6;
+  cout &lt;&lt; "\n\tv6.size() - " &lt;&lt; v6.size();
+  cout &lt;&lt; "\n\tv6.capacity() - " &lt;&lt; v6.capacity();
+  v6.assign( 5, 10 );
+  cout &lt;&lt; "\n\n\tv6.assign( 5, 10 )"
+		&lt;&lt; "\n\t\tv6.size() - " &lt;&lt; v6.size()
+		&lt;&lt; "\n\t\tv6.capacity() - " &lt;&lt; v6.capacity()
+		&lt;&lt; "\n\t\tv6.at(0) - " &lt;&lt; v6.at(0)
+		&lt;&lt; "\n\t\tv6.at(4) - " &lt;&lt; v6.at(4);
+  v6.assign( 9, 20 );
+  cout &lt;&lt; "\n\n\tv6.assign( 9, 20 )"
+		&lt;&lt; "\n\t\tv6.size() - " &lt;&lt; v6.size()
+		&lt;&lt; "\n\t\tv6.capacity() - " &lt;&lt; v6.capacity()
+		&lt;&lt; "\n\t\tv6.at(0) - " &lt;&lt; v6.at(0)
+		&lt;&lt; "\n\t\tv6.at(4) - " &lt;&lt; v6.at(4)
+		&lt;&lt; "\n\t\tv6.at(5) - " &lt;&lt; v6.at(5)
+		&lt;&lt; "\n\t\tv6.at(8) - " &lt;&lt; v6.at(8);
+  v6.assign( 3, 30 );
+  cout &lt;&lt; "\n\n\tv6.assign( 3, 30 )"
+		&lt;&lt; "\n\t\tv6.size() - " &lt;&lt; v6.size()
+		&lt;&lt; "\n\t\tv6.capacity() - " &lt;&lt; v6.capacity()
+		&lt;&lt; "\n\t\tv6.at(0) - " &lt;&lt; v6.at(0)
+		&lt;&lt; "\n\t\tv6.at(1) - " &lt;&lt; v6.at(1)
+		&lt;&lt; "\n\t\tv6.at(2) - " &lt;&lt; v6.at(2);
+  v6.assign( 23, 40 );
+  cout &lt;&lt; "\n\n\tv6.assign( 23, 40 )"
+		&lt;&lt; "\n\t\tv6.size() - " &lt;&lt; v6.size()
+		&lt;&lt; "\n\t\tv6.capacity() - " &lt;&lt; v6.capacity()
+		&lt;&lt; "\n\t\tv6.at(0) - " &lt;&lt; v6.at(0)
+		&lt;&lt; "\n\t\tv6.at(2) - " &lt;&lt; v6.at(2)
+		&lt;&lt; "\n\t\tv6.at(3) - " &lt;&lt; v6.at(3)
+		&lt;&lt; "\n\t\tv6.at(22) - " &lt;&lt; v6.at(22);
+  cout &lt;&lt; endl &lt;&lt; endl;
+
+  cout &lt;&lt; "front/back/at mutators:";
+  IntVector v7(8);
+  cout &lt;&lt; "\n\tv7.size() - " &lt;&lt; v7.size();
+  cout &lt;&lt; "\n\tv7.capacity() - " &lt;&lt; v7.capacity();
+  cout &lt;&lt; "\n\tv7 = " &lt;&lt; v7;
+  v7.front() = 10;
+  cout &lt;&lt; "\n\n\tv7.front() = 10\n\tv7 = " &lt;&lt; v7;
+  v7.back() = 20;
+  cout &lt;&lt; "\n\n\tv7.back() = 20\n\tv7 = " &lt;&lt; v7;
+  v7.at(3) = 30;
+  cout &lt;&lt; "\n\n\tv7.at(3) = 30\n\tv7 = " &lt;&lt; v7;
+
+  cout &lt;&lt; endl &lt;&lt; endl;
+
+  }
+   cout &lt;&lt; "Destructors called on all IntVector objects"
+			&lt;&lt; endl &lt;&lt; endl;
+
+  return 0;
+}
+</pre>   
+		</div>
+	</div>
+	<hr>
+   <div class="section">
+		<h2>Output Specifications:</h2>
+		<p>
+			The output of the test harness given above should generate the output below. Make 
+			sure your output matches it <span class="warn">exactly</span> when run with the 
+			test harness above.</p>
+		<div class="codefile">Output of Test Harness</div>
+		<pre class="terminal">   $&gt;<span class="in">./a.out</span>
+	
+Default:
+	size: 0
+	capacity: 0
+	empty?: 1
+
+Size 10:
+	size: 10
+	capacity: 10
+	empty?: 0
+
+Size 15 - Value 2:
+	size: 15
+	capacity: 15
+	empty?: 0
+
+const at functions:
+v1 at: 
+	
+
+v2 at: 
+	0 0 0 0 0 0 0 0 0 0 
+
+v3 at: 
+	2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 
+
+const front/back v3:
+	front: 2
+	back: 2
+
+push_back:
+	v1.push_back(1): 1
+	v1.push_back(100): 100
+	v1.size(): 2 - v1.capacity(): 2
+	v1.push_back(1000): 1000
+	v1.size(): 3 - v1.capacity(): 4
+	v2.push_back(1): 1
+	v2.push_back(100): 100
+	v2.size(): 12 - v2.capacity(): 20
+	v2.push_back(1000): 1000
+	v2.size(): 13 - v2.capacity(): 20
+
+pop_back:
+	v1.size() - 3
+	v1.pop_back():  v1.size() - 2
+	v1.pop_back():  v1.size() - 1
+	v1.pop_back():  v1.size() - 0
+
+reserve:
+	v2.size() - 13
+	v2.capacity() - 20
+	v2.reserve(2)
+	v2.capacity() - 20
+	v2.reserve(30)
+	v2.capacity() - 40
+	v2.reserve(85)
+	v2.capacity() - 85
+	v2.size() - 13
+
+resize(sz,val):
+	v3.size() - 15
+	v3.capacity() - 15
+	v3.at(11) - 2
+
+	v3.resize( 12, 50 )
+		v3.size() - 12
+		v3.capacity() - 15
+		v3.at(11) - 2
+
+	v3.resize( 14, 500 )
+		v3.size() - 14
+		v3.capacity() - 15
+		v3.at(11) - 2
+		v3.at(12) - 500
+		v3.at(13) - 500
+
+	v3.resize( 32, 5000 )
+		v3.size() - 32
+		v3.capacity() - 32
+		v3.at(11) - 2
+		v3.at(13) - 500
+		v3.at(14) - 5000
+		v3.at(30) - 5000
+		v3.at(31) - 5000
+
+	v3.resize( 34, 50000 )
+		v3.size() - 34
+		v3.capacity() - 64
+		v3.at(11) - 2
+		v3.at(13) - 500
+		v3.at(14) - 5000
+		v3.at(31) - 5000
+		v3.at(32) - 50000
+		v3.at(33) - 50000
+
+resize(sz):
+	v4.size() - 15
+	v4.capacity() - 15
+	v4.at(11) - 2
+
+	v4.resize( 12, 50 )
+		v4.size() - 12
+		v4.capacity() - 15
+		v4.at(11) - 2
+
+	v4.resize( 14, 500 )
+		v4.size() - 14
+		v4.capacity() - 15
+		v4.at(11) - 2
+		v4.at(12) - 500
+		v4.at(13) - 500
+
+	v4.resize( 32, 5000 )
+		v4.size() - 32
+		v4.capacity() - 32
+		v4.at(11) - 2
+		v4.at(13) - 500
+		v4.at(14) - 5000
+		v4.at(30) - 5000
+		v4.at(31) - 5000
+
+	v4.resize( 34, 50000 )
+		v4.size() - 34
+		v4.capacity() - 64
+		v4.at(11) - 2
+		v4.at(13) - 500
+		v4.at(14) - 5000
+		v4.at(31) - 5000
+		v4.at(32) - 50000
+		v4.at(33) - 50000
+
+clear():
+	v4.size() - 34
+	v4.capacity() - 64
+
+	v4.clear()
+		v4.size() - 0
+		v4.capacity() - 64
+
+insert:
+	v5.size() - 0
+	v5.capacity() - 0
+
+	v5.insert( 0, 10 )
+		v5.size() - 1
+		v5.capacity() - 1
+		v5.at(0) - 10
+
+	v5.insert( 0, 20 )
+		v5.size() - 2
+		v5.capacity() - 2
+		v5.at(0) - 20
+		v5.at(1) - 10
+
+	v5.insert( 1, 30 )
+		v5.size() - 3
+		v5.capacity() - 4
+		v5.at(0) - 20
+		v5.at(1) - 30
+		v5.at(2) - 10
+
+	v5.insert( 3, 40 )
+		v5.size() - 4
+		v5.capacity() - 4
+		v5.at(0) - 20
+		v5.at(1) - 30
+		v5.at(2) - 10
+		v5.at(3) - 40
+
+erase:
+	v5.size() - 4
+	v5.capacity() - 4
+
+	v5.erase(1)
+		v5.size() - 3
+		v5.capacity() - 4
+		v5.at(0) - 20
+		v5.at(1) - 10
+		v5.at(2) - 40
+
+	v5.erase(2)
+		v5.size() - 2
+		v5.capacity() - 4
+		v5.at(0) - 20
+		v5.at(1) - 10
+
+	v5.erase(0)
+		v5.size() - 1
+		v5.capacity() - 4
+		v5.at(0) - 10
+
+	v5.erase(0)
+		v5.size() - 0
+		v5.capacity() - 4
+
+assign:
+	v6.size() - 0
+	v6.capacity() - 0
+
+	v6.assign( 5, 10 )
+		v6.size() - 5
+		v6.capacity() - 5
+		v6.at(0) - 10
+		v6.at(4) - 10
+
+	v6.assign( 9, 20 )
+		v6.size() - 9
+		v6.capacity() - 10
+		v6.at(0) - 20
+		v6.at(4) - 20
+		v6.at(5) - 20
+		v6.at(8) - 20
+
+	v6.assign( 3, 30 )
+		v6.size() - 3
+		v6.capacity() - 10
+		v6.at(0) - 30
+		v6.at(1) - 30
+		v6.at(2) - 30
+
+	v6.assign( 23, 40 )
+		v6.size() - 23
+		v6.capacity() - 23
+		v6.at(0) - 40
+		v6.at(2) - 40
+		v6.at(3) - 40
+		v6.at(22) - 40
+
+front/back/at mutators:
+	v7.size() - 8
+	v7.capacity() - 8
+	v7 = 0 0 0 0 0 0 0 0 
+
+	v7.front() = 10
+	v7 = 10 0 0 0 0 0 0 0 
+
+	v7.back() = 20
+	v7 = 10 0 0 0 0 0 0 20 
+
+	v7.at(3) = 30
+	v7 = 10 0 0 30 0 0 0 20 
+
+Destructors called on all IntVector objects
+</pre>
+	</div>
+</div>
+
+<hr>
+<h2>Rubric</h2>
+<div>
+	<table id="rubrictable" border="1">
+	<tbody>
+	<tr>
+		<td>1 pt<br></td>
+		<td>Constructors<br></td>
+
+	</tr>
+	<tr>
+		<td>.5 pts<br></td>
+		<td>Dectructor<br></td>
+	</tr>
+	<tr>
+		<td>.1 pts each <br></td>
+		<td>size, capacity, empty, and clear functions<br></td>
+	</tr>
+	<tr>
+		<td>.2 pts each<br></td>
+		<td>front, back, and pop_back functions<br></td>
+	</tr>
+	<tr>
+		<td>.5 pts<br></td>
+		<td>at functions<br></td>
+	</tr>
+	<tr>
+		<td>1 pt<br></td>
+		<td>push_back function<br></td>
+	</tr>
+	<tr>
+		<td>1 pt<br></td>
+		<td>insert function<br></td>
+	</tr>
+	<tr>
+		<td>1 pt<br></td>
+		<td>erase function<br></td>
+	</tr>
+	<tr>
+		<td>1 pt<br></td>
+		<td>resize functions<br></td>
+	</tr>
+	<tr>
+		<td>1 pt<br></td>
+		<td>reserve function<br></td>
+	</tr>
+	<tr>
+		<td>1 pt<br></td>
+		<td>assign function<br></td>
+	</tr>
+	<tr>
+		<td>1 pt<br></td>
+		<td>expand functions<br></td>
+	</tr>
+	</tbody>
+	</table>
+</div>
+<hr>
+<div>
+	<div>
+	<h2>What to Submit</h2>
+      For this assignment you will turn in the following files:
+      <ul>
+			<li>main.cpp (Your test harness.)<br></li>
+			<li>intvector.h (with exact interface given in specs)<br></li>
+			<li>intvector.cpp<br></li>
+		</ul>
+		<p>
+			All of them should be plain text files with correct naming. Files in ANY other
+         format (MS Word document, etc.) or with ANY other name (main, main.doc, main.txt,
+         IntVector, intVector.cpp, Intvector.h etc.) <b>will not be graded</b>
+		</p>
+         <br><br>
+      <p>
+         When you have completed your assignment, tar and zip all source code files:</p>
+         <pre class="terminal">			tar -czvf assn4.tgz intvector.h intvector.cpp main.cpp
+			</pre>
+      <p>
+         Submit the resulting file (assn4.tgz) in the appropriate turnin link on iLearn.
+		</p>
+      <b>Re-download your work, untar &amp; compile it. If the code does not compile it will not be graded</b>.
+   </div>
+</div>
+
+
+</body></html>Ytext/htmlUUTF-8    ( ? N ` v î ïáòá¢                           á®

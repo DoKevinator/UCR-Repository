@@ -1,0 +1,345 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1187\cocoasubrtf340
+{\fonttbl\f0\fnil\fcharset0 TrebuchetMS;\f1\fnil\fcharset0 Cambria;\f2\fmodern\fcharset0 Courier;
+\f3\fnil\fcharset0 Calibri;}
+{\colortbl;\red255\green255\blue255;\red210\green45\blue53;\red115\green0\blue3;}
+{\*\listtable{\list\listtemplateid1\listhybrid{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{disc\}}{\leveltext\leveltemplateid1\'01\uc0\u8226 ;}{\levelnumbers;}\fi-360\li720\lin720 }{\listname ;}\listid1}
+{\list\listtemplateid2\listhybrid{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{disc\}}{\leveltext\leveltemplateid101\'01\uc0\u8226 ;}{\levelnumbers;}\fi-360\li720\lin720 }{\listname ;}\listid2}
+{\list\listtemplateid3\listhybrid{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{disc\}}{\leveltext\leveltemplateid201\'01\uc0\u8226 ;}{\levelnumbers;}\fi-360\li720\lin720 }{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{circle\}}{\leveltext\leveltemplateid202\'01\uc0\u9702 ;}{\levelnumbers;}\fi-360\li1440\lin1440 }{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{square\}}{\leveltext\leveltemplateid203\'01\uc0\u9642 ;}{\levelnumbers;}\fi-360\li2160\lin2160 }{\listname ;}\listid3}
+{\list\listtemplateid4\listhybrid{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{disc\}}{\leveltext\leveltemplateid301\'01\uc0\u8226 ;}{\levelnumbers;}\fi-360\li720\lin720 }{\listname ;}\listid4}
+{\list\listtemplateid5\listhybrid{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{disc\}}{\leveltext\leveltemplateid401\'01\uc0\u8226 ;}{\levelnumbers;}\fi-360\li720\lin720 }{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{circle\}}{\leveltext\leveltemplateid402\'01\uc0\u9702 ;}{\levelnumbers;}\fi-360\li1440\lin1440 }{\listname ;}\listid5}
+{\list\listtemplateid6\listhybrid{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{disc\}}{\leveltext\leveltemplateid501\'01\uc0\u8226 ;}{\levelnumbers;}\fi-360\li720\lin720 }{\listname ;}\listid6}
+{\list\listtemplateid7\listhybrid{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{disc\}}{\leveltext\leveltemplateid601\'01\uc0\u8226 ;}{\levelnumbers;}\fi-360\li720\lin720 }{\listname ;}\listid7}
+{\list\listtemplateid8\listhybrid{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{disc\}}{\leveltext\leveltemplateid701\'01\uc0\u8226 ;}{\levelnumbers;}\fi-360\li720\lin720 }{\listname ;}\listid8}}
+{\*\listoverridetable{\listoverride\listid1\listoverridecount0\ls1}{\listoverride\listid2\listoverridecount0\ls2}{\listoverride\listid3\listoverridecount0\ls3}{\listoverride\listid4\listoverridecount0\ls4}{\listoverride\listid5\listoverridecount0\ls5}{\listoverride\listid6\listoverridecount0\ls6}{\listoverride\listid7\listoverridecount0\ls7}{\listoverride\listid8\listoverridecount0\ls8}}
+\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\deftab720
+\pard\pardeftab720\sa340
+
+\f0\b\fs72 \cf0 Specifications
+\fs44 \
+Problem Definition\
+\pard\pardeftab720
+
+\b0\fs28 \cf0 This is a well-known game with a number of variants. We will consider the following one, which has an interesting winning strategy. \
+Two players alternately take marbles from a pile. In each move, a player chooses how many marbles to take. \
+The player must take at least one, but no more than half, of the marbles. Then the other player takes a turn. \
+The player who takes the last marble loses.\
+\
+\pard\pardeftab720
+
+\f1\i\fs34 \cf0 \ul \ulc0 Goal\ulnone : Write a program in which the computer plays against a human opponent. \
+Implement both a "naive" and a "smart" strategy for the computer.\
+\pard\pardeftab720\sa340
+
+\f0\i0\b\fs44 \cf0 Specifications\
+\pard\pardeftab720\sa380
+
+\fs28 \cf0 Game Initialization:\
+\pard\tx220\tx720\pardeftab720\li720\fi-720
+\ls1\ilvl0
+\b0 \cf0 {\listtext	\'95	}Generate a random integer between 10 and 100 for the initial size of the pile.\
+{\listtext	\'95	}Ask the user to set the computer's game mode (naive or smart): The response "naive" or 'n' will cause the computer to use the naive strategy.\uc0\u8232 
+\i\fs24 Anything else - "Naive" or 'N' or 'x' or "hard" or "smart" or "abc" or <enter> - will trigger the smart strategy.
+\i0\fs28 \
+{\listtext	\'95	}Generate a random integer 0 or 1 to decide whether the computer (0) or the user (1) takes the first turn.\
+{\listtext	\'95	}Alternate turns between player & computer until one wins (and display winner)\
+{\listtext	\'95	}Repeat game from scratch if requested, otherwise terminate\
+\pard\pardeftab720\sa380
+
+\b \cf0 Game Play\
+\pard\pardeftab720
+
+\b0 \cf0 The player and the computer will take turns playing the game.\
+In the user's turn, ask the player how many marbles to remove. \
+If the value entered is invalid (less than 1, or more than half the remaining marbles), keep asking until it is valid .\
+For its turn, the computer will then use the stategy - naive or smart - specified by the user at the start of the game:\
+\pard\tx220\tx720\pardeftab720\li720\fi-720
+\ls2\ilvl0\cf0 {\listtext	\'95	}In 
+\b\fs24 naive mode
+\b0\fs28 , the computer simply takes a random legal value (i.e. between 1 and n/2 inclusive) from the pile.\
+{\listtext	\'95	}In 
+\b\fs24 smart mode
+\b0\fs28 , the computer removes enough marbles to leave the size of the pile equal to (a power of 2 minus 1): 3, 7, 15, 31, or 63.\uc0\u8232 This is always a legal move, unless the size of the pile is already exactly one of those numbers - in which case, the computer just makes a random legal move.\u8232 
+\i\fs24 Note that you may NOT hard code those "magic numbers" into your code - you must write a function to calculate them as needed.
+\i0\fs28 \
+\pard\pardeftab720
+\cf0 You should have already figured out that in smart mode, the computer cannot be beaten if it has the first move (unless the initial pile size happens to be exactly 15, 31, or 63). Of course, exactly the same applies to a human player who knows the winning strategy.\
+\pard\pardeftab720
+
+\i\fs34 \cf0 If you haven't yet figured out why this strategy works, do NOT proceed any further until you get it!
+\i0\fs28 \
+\pard\pardeftab720\sa380
+
+\b \cf0 Game End\
+\pard\pardeftab720
+
+\b0 \cf0 The game ends when there are no marbles left (i.e. the loser has been forced to pick up the last marble). The winner should be displayed in a message such as: "Congratulations! You Won!" or "Too bad - the Computer beat you :(".\
+Finally, the program should ask if the user wishes to play again: e.g.
+\f2\fs24 \
+    Do you wish to play again? (yes or no)\
+
+\f0\fs28 "yes" or 'y' will cause the game to start again.\
+\pard\pardeftab720
+
+\i\fs24 \cf0 Anything else - e.g. "Yes" or 'Y' or "no" or "n" or "abc" - will cause the program to terminate.
+\i0\fs28 \
+This question should be asked at the end of every game.\
+\pard\pardeftab720\sa340
+
+\b\fs44 \cf0 Coding Specifications\
+\pard\pardeftab720
+
+\b0\fs28 \cf0 Implement the game described above in a single file, main.cpp. \
+\
+Your implementation should include two functions to be called from main, plus one helper function to be called from computer_play:\
+\pard\tx220\tx720\pardeftab720\li720\fi-720
+\ls3\ilvl0
+\b\fs24 \cf0 {\listtext	\'95	}computer_play:
+\b0\fs28  this function should\
+\pard\tx940\tx1440\pardeftab720\li1440\fi-1440
+\ls3\ilvl1\cf0 {\listtext	\uc0\u9702 	}obtain the remaining marble count and the play mode (naive/smart) as input\
+{\listtext	\uc0\u9702 	}calculate and display the number of marbles that the computer removes (according to the play mode)\
+\pard\tx1660\tx2160\pardeftab720\li2160\fi-2160
+\ls3\ilvl2\cf0 {\listtext	\uc0\u9642 	}in smart play mode only: obtain successive values of (2^n - 1) as needed\
+\pard\tx940\tx1440\pardeftab720\li1440\fi-1440
+\ls3\ilvl1\cf0 {\listtext	\uc0\u9702 	}modify the remaining marble count parameter. (Yes, you should pass by reference)\
+\pard\tx220\tx720\pardeftab720\li720\fi-720
+\ls3\ilvl0
+\b\fs24 \cf0 {\listtext	\'95	}user_play:
+\b0\fs28  this function should\
+\pard\tx940\tx1440\pardeftab720\li1440\fi-1440
+\ls3\ilvl1\cf0 {\listtext	\uc0\u9702 	}obtain the remaining marble count as input (use a reference parameter!)\
+{\listtext	\uc0\u9702 	}ask the player the number of marbles he would like to remove\
+{\listtext	\uc0\u9702 	}validate the response, and repeat the request until a valid input is entered\
+{\listtext	\uc0\u9702 	}modify the remaining marble count parameter.\
+\pard\tx220\tx720\pardeftab720\li720\fi-720
+\ls3\ilvl0
+\b\fs24 \cf0 {\listtext	\'95	}powers_of_2:
+\b0\fs28  this helper function should\
+\pard\tx940\tx1440\pardeftab720\li1440\fi-1440
+\ls3\ilvl1\cf0 {\listtext	\uc0\u9702 	}given an integer n, return the value (2^n - 1)\uc0\u8232 
+\i\fs24 for use by the function computer_play, in smart mode only.
+\i0\fs28 \
+\pard\pardeftab720\sa340
+
+\b\fs44 \cf0 Hints & Help\
+\pard\pardeftab720\sa320
+
+\fs34 \cf0 Planning\
+\pard\pardeftab720
+
+\b0\fs28 \cf0 You 
+\b \ul MUST
+\b0 \ulnone  sit down with paper and pencil and map out the steps your "servant" (the computer) has to take, before you ever go near a keyboard.\
+Don't forget: 
+\i\b The "plan" is the single most important and challenging part of the process of creating a computer program. 
+\i0\b0 \
+\
+\pard\pardeftab720\sa320
+
+\b\fs34 \cf0 Incremental development\
+\pard\pardeftab720
+
+\b0\fs28 \cf0 First, build a game that just outputs something like "We are now playing Nim!", and test it. Now, add in all the required features, ONE AT A TIME (not necessarily in this exact order).\
+\pard\tx220\tx720\pardeftab720\li720\fi-720
+\ls4\ilvl0\cf0 {\listtext	\'95	}Put your game inside a loop that allows the user to either play another game, or quit. TEST YOUR GAME AGAIN\
+{\listtext	\'95	}Initialize the number of marbles in the pile to a random number between 10 & 100 inclusive. TEST YOUR GAME\
+{\listtext	\'95	}Generate a random number to decide who plays first, user or computer, and play a single round.\uc0\u8232 To do this, build the two play functions as stubs (e.g. o/p "User's turn" or "Computer's turn"). TEST YOUR GAME\
+{\listtext	\'95	}Develop a test for the end of the game and determine who won (hard code to 0 the return count of user & computer in turn). TEST YOUR GAME\
+{\listtext	\'95	}Complete the user_play function: obtain user input for number of marbles to remove, and test its validity - i.e if the user enters an invalid number, ask for input again, until the input is valid. TEST YOUR GAME\
+{\listtext	\'95	}Temporarily use the same code for both user_play & computer_play, and enable multiple rounds of play. TEST YOUR GAME\
+{\listtext	\'95	}In computer_play function implement the naive strategy (hard code the function call to naive mode). TEST YOUR GAME\
+{\listtext	\'95	}In computer_play function implement the smart strategy (hard code the function call to smart mode). TEST YOUR GAME\
+{\listtext	\'95	}In main, ask the user to select the computer's strategy, and call the function accordingly.\
+\pard\pardeftab720
+\cf0 And just like that, you'll find you have completed the entire assignment!\
+\
+\
+\
+*********************************************************************************************************\
+\pard\pardeftab720
+\cf0 *********************************************************************************************************\
+\
+\
+\
+\pard\pardeftab720\sa340
+
+\b\fs44 \cf0 General CS12 Grading Policy\
+\pard\pardeftab720\sa280
+
+\b0\fs28 \cf0 Grading is a mostly an assessment of the quality of your submission. As important as the grade itself is the feedback you'll be getting from the grader - this will be your best source of guidance for improving your programming skills.\
+\pard\pardeftab720\sa280
+
+\b \cf2 If your program does not compile, it will not be graded:
+\b0 \cf0  Compile your code often. \uc0\u8232 Write only a small portion of code before checking that it still compiles - this way, when you get a syntax error you can be fairly sure the error is in the part you just wrote. \u8232 
+\i\b\fs26 Always make sure the file you turned in does indeed compile by re-downloading it from ILearn, compiling your solution, and running it at least once.
+\i0\b0\fs28 \
+\pard\pardeftab720\sa320
+
+\b\fs34 \cf0 Summary of Deductions\
+\pard\tx220\tx720\pardeftab720\li720\fi-720
+\ls5\ilvl0
+\b0\fs28 \cf0 {\listtext	\'95	}- 
+\b \cf2 100 pts:
+\b0 \cf0  Submitting a file other than a simple text file that is named 
+\b exactly
+\b0  as in specifications.\
+{\listtext	\'95	}- 
+\b \cf2 100 pts:
+\b0 \cf0  Failing to click on attach button when submitting your file (not actually attaching the file).\
+{\listtext	\'95	}- 
+\b \cf2 100 pts:
+\b0 \cf0  Program does not compile with g++/make on bell.cs.ucr.edu or in CS labs.\
+{\listtext	\'95	}- 20 pts: Header information is missing or incomplete.\
+{\listtext	\'95	}- 20 pts: 20 points deducted for EACH global variable used. (DO NOT use global variables.)\
+{\listtext	\'95	}- 20 pts: Style - 2 pts per infraction up to a max of 20 pts.\
+\pard\tx940\tx1440\pardeftab720\li1440\fi-1440
+\ls5\ilvl1\cf0 {\listtext	\uc0\u9702 	}comments - Should be able to figure out the logic of your program just by reading the comments (without looking at the actual code).\
+{\listtext	\uc0\u9702 	}indentation - all lines inside a block should be indented the same number of spaces.\
+{\listtext	\uc0\u9702 	}spacing - blank lines should be used to separate logic blocks\
+{\listtext	\uc0\u9702 	}meaningful variable and constant names\
+{\listtext	\uc0\u9702 	}no magic numbers (numbers used more than once or where it is not obvious what the number represents should be declared as constants)\
+{\listtext	\uc0\u9702 	}line wraps (no line of code should ever be more than 80 characters wide)\
+\pard\pardeftab720\sa320
+
+\b\fs34 \cf0 Early/Late Policy\
+\pard\pardeftab720\sa280
+
+\b0\fs28 \cf0 NO LATE SUBMISSIONS - there is a hard deadline at 9:00:00 pm Saturday\
+\pard\pardeftab720\sa340
+
+\b\fs44 \cf0 Assignment 1 Rubric\
+
+\itap1\trowd \taflags0 \trgaph108\trleft-108 \trcbpat1 \trbrdrt\brdrnil \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalc \clshdrawnil \clwWidth7440\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf0 \clbrdrl\brdrs\brdrw20\brdrcf0 \clbrdrb\brdrs\brdrw20\brdrcf0 \clbrdrr\brdrs\brdrw20\brdrcf0 \clpadt200 \clpadl600 \clpadb200 \clpadr600 \gaph\cellx4320
+\clvertalc \clshdrawnil \clwWidth480\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf0 \clbrdrl\brdrs\brdrw20\brdrcf0 \clbrdrb\brdrs\brdrw20\brdrcf0 \clbrdrr\brdrs\brdrw20\brdrcf0 \clpadt200 \clpadl600 \clpadb200 \clpadr600 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720
+
+\f3\b0\fs26 \cf0 Correctly initializes the game\
+\pard\intbl\itap1\tx220\tx720\pardeftab720\li720\fi-720
+\ls6\ilvl0\cf0 {\listtext	\'95	}initialize size of the pile.\
+{\listtext	\'95	}decide who'll play first turn.\
+{\listtext	\'95	}ask the user for the computer's play mode.\cell 
+\pard\intbl\itap1\pardeftab720\qc
+\cf0 20\cell \row
+
+\itap1\trowd \taflags0 \trgaph108\trleft-108 \trcbpat1 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalc \clshdrawnil \clwWidth7440\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf0 \clbrdrl\brdrs\brdrw20\brdrcf0 \clbrdrb\brdrs\brdrw20\brdrcf0 \clbrdrr\brdrs\brdrw20\brdrcf0 \clpadt200 \clpadl600 \clpadb200 \clpadr600 \gaph\cellx4320
+\clvertalc \clshdrawnil \clwWidth480\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf0 \clbrdrl\brdrs\brdrw20\brdrcf0 \clbrdrb\brdrs\brdrw20\brdrcf0 \clbrdrr\brdrs\brdrw20\brdrcf0 \clpadt200 \clpadl600 \clpadb200 \clpadr600 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720
+\cf0 Detects the game's end successfully and display winner message.\cell 
+\pard\intbl\itap1\pardeftab720\qc
+\cf0 5\cell \row
+
+\itap1\trowd \taflags0 \trgaph108\trleft-108 \trcbpat1 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalc \clshdrawnil \clwWidth7440\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf0 \clbrdrl\brdrs\brdrw20\brdrcf0 \clbrdrb\brdrs\brdrw20\brdrcf0 \clbrdrr\brdrs\brdrw20\brdrcf0 \clpadt200 \clpadl600 \clpadb200 \clpadr600 \gaph\cellx4320
+\clvertalc \clshdrawnil \clwWidth480\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf0 \clbrdrl\brdrs\brdrw20\brdrcf0 \clbrdrb\brdrs\brdrw20\brdrcf0 \clbrdrr\brdrs\brdrw20\brdrcf0 \clpadt200 \clpadl600 \clpadb200 \clpadr600 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720
+\cf0 computer_play function:\
+\pard\intbl\itap1\tx220\tx720\pardeftab720\li720\fi-720
+\ls7\ilvl0\cf0 {\listtext	\'95	}removes the marbles depending on the selected strategy.\
+{\listtext	\'95	}called from the main function.\cell 
+\pard\intbl\itap1\pardeftab720\qc
+\cf0 10\cell \row
+
+\itap1\trowd \taflags0 \trgaph108\trleft-108 \trcbpat1 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalc \clshdrawnil \clwWidth7440\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf0 \clbrdrl\brdrs\brdrw20\brdrcf0 \clbrdrb\brdrs\brdrw20\brdrcf0 \clbrdrr\brdrs\brdrw20\brdrcf0 \clpadt200 \clpadl600 \clpadb200 \clpadr600 \gaph\cellx4320
+\clvertalc \clshdrawnil \clwWidth480\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf0 \clbrdrl\brdrs\brdrw20\brdrcf0 \clbrdrb\brdrs\brdrw20\brdrcf0 \clbrdrr\brdrs\brdrw20\brdrcf0 \clpadt200 \clpadl600 \clpadb200 \clpadr600 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720
+\cf0 computer_play naive strategy\cell 
+\pard\intbl\itap1\pardeftab720\qc
+\cf0 10\cell \row
+
+\itap1\trowd \taflags0 \trgaph108\trleft-108 \trcbpat1 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalc \clshdrawnil \clwWidth7440\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf0 \clbrdrl\brdrs\brdrw20\brdrcf0 \clbrdrb\brdrs\brdrw20\brdrcf0 \clbrdrr\brdrs\brdrw20\brdrcf0 \clpadt200 \clpadl600 \clpadb200 \clpadr600 \gaph\cellx4320
+\clvertalc \clshdrawnil \clwWidth480\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf0 \clbrdrl\brdrs\brdrw20\brdrcf0 \clbrdrb\brdrs\brdrw20\brdrcf0 \clbrdrr\brdrs\brdrw20\brdrcf0 \clpadt200 \clpadl600 \clpadb200 \clpadr600 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720
+\cf0 computer_play smart strategy\cell 
+\pard\intbl\itap1\pardeftab720\qc
+\cf0 20\cell \row
+
+\itap1\trowd \taflags0 \trgaph108\trleft-108 \trcbpat1 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalc \clshdrawnil \clwWidth7440\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf0 \clbrdrl\brdrs\brdrw20\brdrcf0 \clbrdrb\brdrs\brdrw20\brdrcf0 \clbrdrr\brdrs\brdrw20\brdrcf0 \clpadt200 \clpadl600 \clpadb200 \clpadr600 \gaph\cellx4320
+\clvertalc \clshdrawnil \clwWidth480\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf0 \clbrdrl\brdrs\brdrw20\brdrcf0 \clbrdrb\brdrs\brdrw20\brdrcf0 \clbrdrr\brdrs\brdrw20\brdrcf0 \clpadt200 \clpadl600 \clpadb200 \clpadr600 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720
+\cf0 user_play function\
+\pard\intbl\itap1\tx220\tx720\pardeftab720\li720\fi-720
+\ls8\ilvl0\cf0 {\listtext	\'95	}asks the user till it gets a valid input and removes marbles\
+{\listtext	\'95	}called from the main function.\cell 
+\pard\intbl\itap1\pardeftab720\qc
+\cf0 20\cell \row
+
+\itap1\trowd \taflags0 \trgaph108\trleft-108 \trcbpat1 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalc \clshdrawnil \clwWidth7440\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf0 \clbrdrl\brdrs\brdrw20\brdrcf0 \clbrdrb\brdrs\brdrw20\brdrcf0 \clbrdrr\brdrs\brdrw20\brdrcf0 \clpadt200 \clpadl600 \clpadb200 \clpadr600 \gaph\cellx4320
+\clvertalc \clshdrawnil \clwWidth480\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw20\brdrcf0 \clbrdrl\brdrs\brdrw20\brdrcf0 \clbrdrb\brdrs\brdrw20\brdrcf0 \clbrdrr\brdrs\brdrw20\brdrcf0 \clpadt200 \clpadl600 \clpadb200 \clpadr600 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720
+\cf0 Runs an outer loop and asks the user for another round.\cell 
+\pard\intbl\itap1\pardeftab720\qc
+\cf0 15\cell \row
+
+\itap1\trowd \taflags0 \trgaph108\trleft-108 \trcbpat1 \trbrdrl\brdrnil \trbrdrt\brdrnil \trbrdrr\brdrnil 
+\clvertalc \clshdrawnil \clwWidth7640\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw40\brdrcf0 \clbrdrl\brdrs\brdrw20\brdrcf0 \clbrdrb\brdrs\brdrw20\brdrcf0 \clbrdrr\brdrs\brdrw20\brdrcf0 \clpadt200 \clpadl400 \clpadb200 \clpadr600 \gaph\cellx4320
+\clvertalc \clshdrawnil \clwWidth480\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrs\brdrw40\brdrcf0 \clbrdrl\brdrs\brdrw20\brdrcf0 \clbrdrb\brdrs\brdrw20\brdrcf0 \clbrdrr\brdrs\brdrw20\brdrcf0 \clpadt200 \clpadl600 \clpadb200 \clpadr600 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720
+
+\i\b\fs32 \cf0 TOTAL
+\i0\b0 \cell 
+\pard\intbl\itap1\pardeftab720\qc
+
+\i\b \cf0 100
+\i0\b0 \cell \lastrow\row
+\pard\pardeftab720
+
+\f0\fs28 \cf0 \
+\
+\
+*********************************************************************************************************\
+*********************************************************************************************************\
+\
+\
+\
+\pard\pardeftab720\sa340
+
+\b\fs44 \cf0 Header Information\
+\pard\pardeftab720
+
+\b0\fs28 \cf0 Remember to include the following header information at the top of your program:
+\f2\fs24 \
+\
+\'a0 \'a0\cf3 // Course: CS 12 <quarter & year>\cf0 \
+\'a0 \'a0\cf3 //\cf0 \
+\'a0 \'a0\cf3 // First Name: \cf0 \
+\'a0 \'a0\cf3 // Last Name: \cf0 \
+\'a0 \'a0\cf3 // Course username: <enter the username you use to login in the lab>\cf0 \
+\'a0 \'a0\cf3 // email address: <enter your cs or UCR student email address here>\cf0 \
+\'a0 \'a0\cf3 //\cf0 \
+\'a0 \'a0\cf3 // Lecture Section: <e.g. 001>\cf0 \
+\'a0 \'a0\cf3 // Lab Section: <e.g. 021>\cf0 \
+\'a0 \'a0\cf3 // TA: \cf0 \
+\'a0 \'a0\cf3 //\cf0 \
+\'a0 \'a0\cf3 // Assignment: <assn1, hw2, lab3, etc.>\cf0 \
+\'a0 \'a0\cf3 //\cf0 \
+\'a0 \'a0\cf3 // I hereby certify that the code in this file\cf0 \
+\'a0 \'a0\cf3 // is ENTIRELY my own original work.\cf0 \
+\'a0 \'a0\cf3 //\cf0 \
+\'a0 \'a0\cf3 // =================================================================\cf0 \
+\'a0 \
+
+\f0\fs28 NOTE: This header MUST appear at the top of EVERY file submitted as part of your assignment (don't forget to fill in *your* details!!).\
+\pard\pardeftab720\sa340
+
+\b\fs44 \cf0 What to Submit\
+\pard\pardeftab720
+
+\b0\fs28 \cf0 Your assignment must be submitted as a simple text file named main.cpp. Files in ANY other format (MS Word document, etc.) or with ANY other name (main, main.doc, main.txt, etc.) 
+\b will not be graded
+\b0 .\
+\
+Submit your work via the appropriate ILearn assignment link.\
+After submitting, ALWAYS re-download your work and compile & run it to make sure you sudmitted the correct file!\
+If your code does not compile it 
+\b will not be graded
+\b0 .
+\f3\b\fs48 \cf1 \
+\
+}

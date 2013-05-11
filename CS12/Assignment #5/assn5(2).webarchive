@@ -1,0 +1,82 @@
+bplist00—_WebMainResource’	
+_WebResourceData_WebResourceMIMEType_WebResourceTextEncodingName_WebResourceFrameName^WebResourceURLO*Ô<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html><head>
+</head>
+<body>
+<h1 style="text-align: center;"><span style="color: blue;">CS 12 - Assignment 5</span></h1>
+<hr>
+<h1 style="margin-left: 0.5in;">Collaboration Policy</h1>
+<p style="margin-left: 0.5in;">Collaboration between students on programming assignments is <span style="font-weight: bold;">NOT</span> allowed under any circumstances; nor is getting coding assistance or copying code from <span style="font-weight: bold;">ANY</span> outside source (any book, current or past students, past solutions (even if they are your own!), web sites, etc.). We test every submission for copying and when we find it we treat it as flagrant academic dishonesty on the part of <span style="font-weight: bold; font-style: italic;">all</span> parties involved, regardless of their roles as provider or consumer. The penalty is generally instant failure in the course in addition to the usual sanctions applied by <a target="_blank" href="http://conduct.ucr.edu/Policies/Academic+Integrity+Policy+and+Procedures.htm">Student Judicial Affairs</a>. <br> <br> While working on a programming assignment, you <span style="font-weight: bold; font-style: italic;">may</span> discuss general solution ideas with other members of the class, or have them observe a run of your program and offer their ideas on its behavior - indeed, we encourage you to do this openly, particularly via Piazza. You may <span style="font-weight: bold; font-style: italic;">never</span> look at someone else's code for the assignment to figure out how to do your own program - among other things, it is very hard to write your own unique solution once you have seen someone else's. If you need someone to look at your code to give advice, you should see a TA or instructor.</p>
+<hr>
+<h2>Assignment submission instructions</h2>
+<p>Your assignment must be submitted as a <span style="font-weight: bold; font-style: italic;">tar file </span> containing your class header (.h) and implementation (.cpp) file. <br> Submit your work via the appropriate ILearn assignment link. (Make sure you use the right link - if we can't find it, we can't grade it!)</p>
+<p>Remember to include the following header information at the top of your program:</p>
+<pre>// Course: CS 12 &lt;quarter &amp; year&gt;<br>//<br>// First Name: <br>// Last Name: <br>// Course username: &lt;enter the username you use to login in the lab&gt;<br>// email address: &lt;enter your <span style="font-weight: bold;">cs</span> or <span style="font-weight: bold;">UCR student</span> email address here&gt;<br>//<br>// Lecture Section: &lt;e.g. 001&gt;<br>// Lab Section: &lt;e.g. 021&gt;<br>// TA: <br>//<br>// Assignment: &lt;assn1, hw2, lab3, etc.&gt;<br>//<br>// I hereby certify that the code in this file<br>// is ENTIRELY my own original work.<br>//<br>// =================================================================</pre>
+<p>NOTE: This header MUST appear at the top of EVERY file submitted as part of your assignment<br> (don't forget to fill in *your* details!!).</p>
+<hr>
+<h2>IntList Assignment Specifications:</h2>
+<p><em>You will <span style="text-decoration: underline;">begin</span> this assignment in lab, and <span style="text-decoration: underline;">complete</span> it as assignment 5.</em><br><em>Submit the portion required for lab in the usual way for lab credit, then submit the complete project as assignment 5.</em><br><em>As always, you <span style="text-decoration: underline;">are</span> permitteed to collaborate on the lab portion, BUT <strong>NOT</strong> ON THE REMAINING PORTION; we will examine the functions specified for the assignment for unauthorized collaboration.</em></p>
+<p>Construct a single header file (intlist.h) that <span style="text-decoration: underline;"><em>declares &amp; implements</em></span> the IntNode struct (just copy it exactly as it is below); and also <em>declares</em> the IntList Class interface. <br>You will implement the IntList class itself, as usual, in a separate file (intlist.cpp) that implements the member functions of the IntList class. Submit <strong><em>ONLY</em> </strong>these two files.<br>Of course, you will have to build your own test harness in the process of developing your IntList class, but we don't need to see it this time, as we will be using our own; so make sure you think of - and test for - all possible cases where things might go wrong <em>(think back to your IntVector assignment)</em>.</p>
+<p><em><strong>Remember, never implement more than 1 or 2 member functions without fulling testing them with your own test harness.</strong></em></p>
+<hr>
+<h2>IntNode class</h2>
+<p>I am providing the IntNode struct you must use. Place this struct definition <b><span style="text-decoration: underline;">within</span></b> the intlist.h file exactly as is. Make sure you place it above the definition of your IntList class. Notice that you will <strong><em>not</em> </strong>build an implementation file for the IntNode struct: its constructor has been defined <span style="text-decoration: underline;"><em>inline</em></span>√Ç&nbsp;<em>(i.e. within the struct definition itself)</em>. <br>Also recall that by default, struct members are public, not private. Therefore in our example below, all IntNode members (data, next, and the constructors) are public. Do not write any other functions for the IntNode struct. Use as is.</p>
+<pre><span style="font-family: 'courier new', courier;">struct IntNode
+{
+   int data;
+   IntNode* next;
+   IntNode( int data ) : data( data ), next( 0 ) {}
+   IntNode( ) : data( 0 ), next( 0 ) {}
+};
+</span></pre>
+<hr>
+<h2>IntList class</h2>
+<h3>Encapsulated (Private) Data Fields</h3>
+<ul>
+<li><span style="font-family: 'courier new', courier;">head: IntNode *</span></li>
+<li><span style="font-family: 'courier new', courier;">tail: IntNode *</span></li>
+<li><span style="font-family: 'courier new', courier;">sz: unsigned int</span></li>
+</ul>
+<h3>Public Inteface (Public Member Functions)</h3>
+<ul>
+<li><span style="font-family: 'courier new', courier;">IntList()  // lab 6</span></li>
+<li><span style="font-family: 'courier new', courier;">~IntList()  // lab 6</span></li>
+<li><span style="font-family: 'courier new', courier;">unsigned int size() const  // assn 5</span></li>
+<li><span style="font-family: 'courier new', courier;">void print() const  // lab 6</span></li>
+<li><span style="font-family: 'courier new', courier;">void push_front( int value )  // lab 6</span></li>
+<li><span style="font-family: 'courier new', courier;">void push_back( int value )  // lab 6</span></li>
+<li><span style="font-family: 'courier new', courier;">void pop_front()  // lab 6</span></li>
+<li><span style="font-family: 'courier new', courier;">void select_sort() <span style="color: #000000; font-family: 'courier new', courier; font-size: 12px; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-size-adjust: auto; -webkit-text-stroke-width: 0px; background-color: #ffffff; display: inline !important; float: none;"><span class="Apple-converted-space"> </span> // assn 5</span></span></li>
+<li><span style="font-family: 'courier new', courier;">void insert_sorted( int value ) <span style="color: #000000; font-family: 'courier new', courier; font-size: 12px; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-size-adjust: auto; -webkit-text-stroke-width: 0px; background-color: #ffffff; display: inline !important; float: none;"><span class="Apple-converted-space"> </span> // assn 5</span></span></li>
+<li><span style="font-family: 'courier new', courier;">void remove_duplicates() <span style="color: #000000; font-family: 'courier new', courier; font-size: 12px; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-size-adjust: auto; -webkit-text-stroke-width: 0px; background-color: #ffffff; display: inline !important; float: none;"><span class="Apple-converted-space"> </span> // assn 5</span></span></li>
+</ul>
+<hr>
+<h3>Constructor and Destructor</h3>
+<h4>IntList() - the default constructor</h4>
+<p>Initialize an empty list.</p>
+<h4>~IntList()</h4>
+<p>This function should deallocate all remaining dynamically allocated memory (all remaining IntNodes).</p>
+<h3>Accessors</h3>
+<h4>unsigned int size() const</h4>
+<p>This function returns the current size (number of nodes) of the IntList object.</p>
+<h4>void print() const</h4>
+<p>This function prints to a single line all of the int values stored in the list, each separated by a space.</p>
+<h3>Mutators</h3>
+<h4>void push_front( int value )</h4>
+<p>This function inserts a data value (within a new node) at the front end of the list and increases size of list by 1.</p>
+<h4>void push_back( int value )</h4>
+<p>This function inserts a data value (within a new node) at the back end of the list and increases size of list by 1.</p>
+<h4>void pop_front()</h4>
+<p>This function removes the value (actually removes the node that contains the value) at the front end of the list and decreases size of the list by 1. Do nothing if the list is already empty.</p>
+<h4>void select_sort( )</h4>
+<p>This function sorts the list into ascending order using the selection sort algorithm.</p>
+<h4>void insert_sorted( int value )</h4>
+<p>This function assumes the values in the list are in sorted (ascending) order and inserts the data into the appropriate position in the list (so that the values will still be in ascending order after insertion). Size of the list is increased by 1.</p>
+<h4>void remove_duplicates()</h4>
+<p>This function removes all values (actually removes the nodes that contain the value) that are duplicates of a value that already exists in the list.</p>
+<h4>bool is_sorted()</h4>
+<p>This function checks if the list is sorted and returns true if it is.</p>
+<h3>Private Helper Functions</h3>
+<p>For the IntList class, you may define any <span color="red" style="color: red;"><b><span style="text-decoration: underline;"><big>private</big></span></b></span> helper functions you deem useful, provided they do not affect the efficiency of the problem they are used to solve. Be careful making any function that must traverse the list to get to the node it will be working on. A private helper function that does this will almost always cause the function it is helping to become less efficient. You may lose points for that.</p>
+<hr><hr style="width: 100%; height: 2px;">
+
+</body></html>Ytext/htmlUUTF-8P_ohttps://ilearn.ucr.edu/bbcswebdav/pid-1830643-dt-content-rid-9482914_1/courses/CS_012_001_13W/assn5%282%29.html    ( : P n Ö î+á+ë+ó+ò                           ,

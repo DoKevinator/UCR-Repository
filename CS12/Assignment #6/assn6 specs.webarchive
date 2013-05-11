@@ -1,0 +1,523 @@
+bplist00—_WebMainResource’	
+^WebResourceURL_WebResourceData_WebResourceMIMEType_WebResourceTextEncodingName_WebResourceFrameName_khttps://ilearn.ucr.edu/bbcswebdav/pid-1830647-dt-content-rid-9597714_1/courses/CS_012_001_13W/bboard_3.htmlOù˜<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html><head><title>CS12 Bulletin Board part III</title><style type="text/css"></style></head><body onload="set_assignment(6, 'Bulletin Board Extended')">
+<h1>Programming Assignment 6 - Bulletin Board (Replies to Replies)</h1>
+
+<div class="section">
+<h2>Problem Definition</h2>
+<p>In this assignment, you will be extending your bulletin board yet
+again, so first
+make sure you have your previous assignment working perfectly.</p>
+<p>We will be adding two major new functionalities: </p>
+<ol>
+  <li>The bulletin board will now be able to handle replies to replies,
+and will display them indented according to their "level" (e.g. Replies
+are indented 2 spaces; Replies to Replies 4 spaces; Replies to Replies
+to Replies 6 spaces; etc.) You will use recursive techniques to do this.<br>
+  </li>
+  <li>The board will now be able to save the entire board (all Message
+content) to file, and read that file back in; as well as reading in
+User data from file as you did with the previous bulletin board
+assignment.<br>
+  </li>
+</ol>
+<font color="red">You may re-use your code from the previous assignment
+(with modifications, of course) - but as always using another student's
+code will trigger disciplinary action.</font></div>
+
+<div class="section">
+<h2>File Naming Specifications</h2>
+<p> The files that you submit should be named <b>main.cpp</b>, <b>bboard.h</b>,
+<b>bboard.cpp</b>, <b>message.h</b>, <b>message.cpp</b>,<b>topic.h</b>,
+<b>topic.cpp</b>, <b>reply.h</b>, <b>reply.cpp</b>, <b>user.h</b>, <b>user.cpp</b>
+, and <b>Makefile</b>. <br>
+<font color="red">The names are case-sensitive.</font></p>
+</div>
+
+<div class="section">
+<h2>Class Specifications</h2>
+<div class="subsection">
+<h3>Bboard Class interface</h3>
+<font color="red">Changing the PUBLIC INTERFACE or PRIVATE VARIABLES
+will result in -10 points.</font><br>
+<br>
+<div style="border-style: solid; border-width: 1px; padding: 15px; background-color: rgb(238, 238, 255);">
+<h3 style="margin-left: 0pt; text-decoration: underline;">Private Data
+Fields</h3>
+<ul>
+  
+  <li>title - string : <i>title of the board; initialized via
+constructor</i><br>
+  </li>
+  <li>user_list - vector&lt;User&gt; : <i>list of members; initially
+empty, then populated via setup()</i></li>
+
+  <li>current_user <strong><span color="red" style="color: red;">(<i>Major
+change from previous assignment!</i>)</span></strong> - const User* : <span style="font-style: italic;">this is now a <b><i>pointer</i></b> to
+the user who is currently logged in; it is initialized by the
+constructors to <b><tt>NULL</tt></b>, then set via login()</span><br>
+
+REMEMBER to change all your <tt>current_user.get_username()</tt> to <tt>current_user-&gt;get_username()</tt></li><li>message_list <strong><span color="red" style="color: red;">(<i>Major
+change from previous assignment!</i>)</span></strong> - vector&lt;Message*&gt; :<span style="font-style: italic;"> </span> <i>list of message <span class="warn"><span style="text-decoration: underline;">pointers</span><span style="font-weight: normal; color: black;">, initially empty<span style="font-weight: bold;"></span></span><br>
+    </span></i></li>
+</ul>
+<h3 style="margin-left: 0pt; text-decoration: underline;">Public Member
+Functions</h3>
+<p>This is the public interface of the class - the contract with the
+user.</p>
+<div style="margin-left: 2em;">
+<dl>
+  <dt><b>Bboard( )</b></dt>
+  <dd> <i>default constructor that creates a board with a default
+title, empty user &amp; message lists, and the "default" User<br>
+    </i> </dd>
+  <dt><b>Bboard( const string &amp; ttl )</b></dt>
+  <dd> <i>same as default c'tor, except that it sets the title of the
+board.</i> </dd>
+</dl>
+<b>~Bboard( )</b><br>
+<div style="margin-left: 40px;"> <i>destructor that deallocates all
+Messages pointed to by message_list <span style="font-weight: bold;">
+(THINK CAREFULLY ABOUT THIS!!)</span></i><br>
+</div>
+<dl>
+  <dt><b>bool load_users(const string&amp; userfile) <em><span color="red" style="color: red;"> Major Change!!!</span> </em></b></dt>
+  <dd><i>This replaces the "setup" function in pthe previous assignment.<br>
+In this assignment, we'll read the users info (username and password)
+from a <span style="font-weight: bold;">file</span> rather than from standard input ("cin") and redirection from terminal. <br>
+This function gets a name/path (userfile) of a file that stores the
+user info in the given format (See Input File Format Specs). It opens
+and reads the file and fills the user_list vector.<br>
+If there is an error while opening the file, the function should return
+false, otherwise return true.<br>
+    <span style="text-decoration: underline;">Hint:</span> The file
+format is same as before, you can simply use the ifstream object
+instead of "cin".</i></dd>
+</dl>
+<dl>
+<dt><b>bool load_messages(const string&amp; datafile) <font color="red">New !!!</font></b></dt>
+  <dd> <i>This function gets a name/path (datafile) of a file that
+stores the messages (from previous sessions) in the given format (See
+File Format Specs). It opens and reads a file and fills the
+message_list vector. If an error occurs when opening the file, it
+returns false. Returns true otherwise.<br>
+    <u>See below (Tips and Tricks) for tips.</u></i><br>
+  </dd>
+  <br>
+  <dt><b>bool save_messages(const string&amp; datafile) <font color="red">New !!!</font></b></dt>
+  <dd> <i>This function gets a name/path (datafile) of a file that
+will store all of the the messages, and after opening the file writes
+the messages into it with the same format (See File Format Specs). If
+an error occurs when opening the file, it returns false. Returns true
+otherwise.<br>
+    <u>See below (Tips and Tricks) for tips.</u></i><br>
+  </dd>
+  <br>
+  <dt><b>void login( ) <span color="red" style="color: red;">(<i>Major
+changes from previou assignment!</i>)</span></b></dt>
+  <dd><i>asks for and validates current user/password</i><br>
+This function asks for a username and password, and checks the
+user_list vector for a matching User.<br>
+If a match found, it sets current_user to the identified User from the
+list <i>(remember, current_user is now a <b>pointer</b>, not an
+actual object)</i>. If not found, it will keep asking until a match is
+found or the user types: 'q' or 'Q' as the username.<br>
+    <i>You may assume we do not have a member with name 'q' or 'Q'.</i>
+When the user chooses to quit, say "Bye!" and just exit the login
+function.<br>
+    <span class="warn">See the output specifications for details.</span></dd>
+<br>
+  <dt><b>void run( ) <font color="gray"><i>No direct change. <span class="warn">(See the private display() and add_reply() functions.) </span></i></font></b></dt>
+  <dd> <i>This function includes the main loop of the bboard.<br>
+    <span style="font-weight: bold;">Note: if login() has not set a
+valid current_user, this function must abort without showing the menu -
+i.e. there must be no way to get around logging in! Question: how will
+you know if a valid user is not logged in?</span></i><br>
+In the main loop, you should display menu items: "Display Messages ('D'
+or 'd'), "Add New Topic('N' or 'n')", "Add Reply ('R' or 'r')"and "Quit
+('Q' or 'q')".<br>
+The user should select one of these menu items, which should then
+invoke the corresponding method of Bboard; with any other input, the
+user should be asked to try again. 'Q'/'q' should terminate the program
+in the same way described for login.<br>
+    <span class="warn">See suggested private functions for details.</span>
+  </dd>
+  <br>
+</dl>
+
+</div>
+<h3 style="margin-left: 0pt; text-decoration: underline;"><i>Suggested</i>
+Private Member Functions</h3>
+<p> These are "helper functions": member functions that will never be
+needed by a user of the class - they are needed by the public interface
+functions. You are free to change/add/remove these functions as you
+wish:</p>
+<div style="margin-left: 2em;">
+<dl>
+  <dt><b>void add_user(const string&amp; name, const string&amp; pass) <font color="gray"> (<i>No change from prev. assignment</i>)</font></b></dt>
+  <dd> This function can be called from the load_users function to add the
+users from file to user_list.</dd></dl>
+<dl>
+<dt><b><del>bool user_exists(const string&amp; name, const
+string&amp; pass) const</del> <span color="red" style="color: red;">(<i>No
+longer needed</i>)</span></b></dt>
+</dl>
+<b>const User* get_user(const string&amp; name, const string&amp;
+pw) const <span color="red" style="color: red;">(<i>Major change from
+previous assignment!</i>)</span></b>
+<dl>
+<dd>This function now includes the functionality of the old
+"user_exists" helper:<br>
+It traverses the user_list, testing for the existence of a user with
+the given name and password; if this user is NOT found, the function
+returns NULL; otherwise it returns a <i><b>pointer</b></i> to the
+identified User <span style="font-style: italic;">(the statement </span><tt>return &amp;user_list.at(i)</tt><span style="font-style: italic;"> will work - make sure
+you understand why!!)</span><br>
+This function may be used by login() to set the current_user (which is
+now, obviously, a pointer, not an object).<br>
+There must be <span style="font-weight: bold; font-style: italic;">no
+other</span> way to set current_user to anything other than NULL.<br>
+
+  </dd>
+</dl>
+<b></b>
+<dl>
+<dt><b>void display() const</b> <font style="font-weight: bold;" color="red">Major Change !!!</font></dt>
+  <dd>This function will traverse the Bboard's message list, and invoke the print function on Topic objects <span style="font-weight: bold;">ONLY</span>.<br>
+It will then be the responsibility of the Topic object to invoke the print function recursively on its own replies.<br>
+The Bboard dislay function will ignore all Reply objects in its message list. </dd>
+  <br>
+  <dt><b>void add_topic() </b><font style="font-weight: bold;" color="red">Major Change !!!</font><b><br>
+    </b></dt>
+  <dd> This function asks the user to create a new Topic (i.e. the
+first message of a new discussion "thread"). Every Topic includes a
+subject line and a body that might consist of <span style="font-weight: bold; font-style: italic;">multiple</span> lines. e.g.,
+    <pre><b>Subject:</b> "Thanks"<br><b>Body:</b> "I would like to thank you for this awesome board.<br>   I'll visit here regularly."<br></pre>
+    <span class="warn"> The body ends when the user enters an empty
+line. </span> <u>Hint:</u> you can use logic similar to what you used
+in lab for reading the body from file. </dd>
+  <dd> Each Topic also stores the username of current_user; and a
+message id, which is (index of its Message*<span style="font-weight: bold;"> + 1</span>): for example, the first
+message on the board will be a Topic whose pointer will be stored at
+index 0 of the message_list vector, so its message id will be (0 + 1) =
+1 <span style="font-style: italic;"> (there are better ways of
+establishing unique ids for a set of objects, but for now this will
+work fine)</span><br>
+Once the Topic has been constructed, a pointer to it is added to
+message_list. <span style="font-style: italic;"> <u>Hint:</u> Do you
+need pointers to automatic or dynamic Topics?</span><br>
+  </dd>
+  <br>
+  <dt><b>void add_reply() <font color="red">Major Change !!!</font><br>
+    </b></dt>
+  <dd> As in the prev. assignment, this function asks the user to enter
+a new reply to a given Topic.<br><br>
+The add_reply function first asks the user for the <span style="font-style: italic;"> id of the Message (which may be either a Topic or a
+Reply) to which they are replying</span>; <span class="warn">if the
+number given greater than the size of message_list</span>
+it should output an error message and loop back, continuing to ask for
+a valid Message id number until the user enters either -1 (or any negative number, to return to
+the menu) or a valid id. <br>
+If the id is valid, then the function asks for the body of the new
+message, and constructs the Reply, pushing back a pointer to it on the
+message_list<br>
+The subject of the Reply is a copy of the parent Topic's subject with the "Re: "
+prefix. <br>
+    <div style="margin-left: 40px;">e.g. suppose the subject of message #9 was "Thanks", and a user
+is replying to that message:
+    </div>
+<pre style="margin-left: 40px;"><b>Enter Message ID: </b>9<br><b>Body:</b> It was a pleasure implementing this.<br>   I hope everyone likes it.   <br></pre>
+    
+    <div style="margin-left: 40px;">
+    <div style="margin-left: 40px;"><span style="font-style: italic;" class="warn"><span style="font-weight: bold;">NOTE</span>: The body ends when the user enters an
+empty line, i.e. a second newline</span><br>
+    <span style="font-style: italic;" class="warn">
+    </span><u style="font-style: italic;">Hint:</u><span style="font-style: italic;">&nbsp; you can use a logic similar to what you did
+in lab for reading the body of existing messages from file.</span><br style="font-style: italic;">
+    </div>
+    <br>
+
+The above dialog will generate a reply that has "Re: Thanks" as its
+subject and "It was a pleasure implementing this.<span class="warn">\n</span>I
+hope everyone likes it." as its body.<br>
+    </div>
+
+     
+    
+    <br>
+Note that we are maintaining a list of
+pointers to Replies inside the <b><i>parent Message</i></b>.
+Therefore, you will:
+    <ol>
+      <li> create a "polymorphic" dynamic Reply with the input data,
+setting its subject to "Re: " + its parent's subject (this is handled
+inside Reply's constructor);</li>
+      <li>call the <span class="warn">add_child</span> function <span style="font-weight: bold; font-style: italic;">on the
+parent message</span> to push_back the Message* (to the new Reply) to the
+        <span style="font-weight: bold; font-style: italic;">parent's</span> child_list vector;</li>
+      <li>Finally, push_back the same pointer to <span style="font-weight: bold; font-style: italic;">Bboard's</span> message_list.</li>
+      <br>
+      <font color="red">Note: </font>When the user chooses to return
+to the menu, do not call run() again - just invoke <i>return;</i><br>
+    </ol>
+  </dd>
+  <br>
+</dl>
+
+</div>
+</div>
+</div>
+<div class="subsection">
+<h3>User Class</h3>
+<p> The User class is unchanged from the previous assignment - just
+make sure your implementation works correctly. <font color="red">As
+always, you may not alter the class' public interface!</font></p>
+</div>
+<div class="subsection">
+<h3>Message, Topic and Reply Classes</h3>
+<p>We are going to promote our original Message class to an <span style="font-style: italic; text-decoration: underline;">abstract base
+class</span> <span style="font-style: italic;">(it has two pure virtual functions, and thus can never be instantiated)</span>, and derive two new classes from it: Topic and Reply.<br>
+
+The Topic class works like the previous Message, holding the first
+posting of a thread, with Reply objects continuing the discussion. <br>The Reply class will be able to manage <span style="font-style: italic;">nested</span> replies, i.e. "Replies to Replies" (to any level), using the technique of recursion.<br>
+<br>
+<b>ID:</b> The "id" of all Topic and Reply objects is just their
+"number" - i.e. their (index in message_list) + 1. This means that the
+ids of two Replies to say message id #9 might be id #34 and id#61<br>
+Implement the Message, Topic and Reply classes according to the
+following interfaces:<br>
+<br>
+<font color="red">As always, you may not alter any PUBLIC member
+functions, or PRIVATE/PROTECTED member variables</font></p>
+
+<br>
+<div class="codefile">message.h</div>
+<pre class="prettyprint">  <br>  //inclusion guards<br>  //includes<br><br>  class Message  // abstract base class<br>  {<br>   protected:  // allow access to these members by objects of derived classes<br>     string author;<br>     string subject;<br>     string body;<br>     unsigned id;  // <font color="red">New !!<br>     // This will be the size of the message_list vector to which the<br>     // newly constructed Message* is being pushed_back<br></font>&nbsp;    vector&lt;Message*&gt; child_list; // <font color="red">New !!</font><font><font color="red"><br>     // This is how a Message is able to keep track of its Replies</font></font><br>&nbsp;<br>   public:<br><br>     //default constructor<br>     Message();<br><br>     //Parameterized onstructor; <span style="color: red;">id will be the size of current Bboard message_list</span><br>     Message(const string&amp; athr, const string&amp; sbjct, const string&amp; body, unsigned id);<br><br>     //be careful here, you must invoke delete on pointers to objects<br>     //How many Message/Reply/Topic objects do you have in your program?<br>     virtual ~Message();<br><br>     virtual void print() const = 0; <br><br>     // returns true if the object is reply.<br>     virtual bool is_reply() const = 0;<br><br>     //returns the subject string.<br>     string get_subject() const;<br><br>     // returns the id.<br>     unsigned get_id() const; // <font color="red">New !!</font>    <br><br>     virtual string to_formatted_string() const = 0;  // <font color="red">New !!</font><br><br>     // Adds a pointer to the child to child_list. <br>     void add_child(Message* child); // <font color="red">New !! </font><br><br>  };<br><br>  //end inc guards<br></pre>
+<br>
+<div class="codefile">topic.h</div>
+<pre class="prettyprint">  //inclusion guards<br>  //includes<br><br>  class Topic: public Message<br>  {   <br>   // <span style="color: red;">no new member variables</span><br>   public:<br><br>     //default constructor<br>     Topic();<br><br>     //Parameterized constructor<br>     Topic(const string&amp; athr, const string&amp; sbjct, const string&amp; body, unsigned id);<br><br>     /* this function will print the Topic as in the previous assignment.<br>     * Then it invokes <b>print_subtree(1)</b> on each of the messages in child_list <br>     * (which are all "first-level" Reply objects).<br>     */<br>     virtual void print() const; // <font color="red">Major Change!!</font><br>     <br>     virtual bool is_reply() const;<br>          <br>     /* to_formatted_string writes the contents of the Topic to a string in the following format:<br>        <b>&lt;begin_topic&gt;</b><br>        :id: 4<br>        :subject: single line<br>        :from: author<br>        :children: 5 6 [this line should <b><i>not</i></b> be printed if there are no children.]<br>        :body: multiple lines - line 1<br>        line 2<br>        line 3<br>        &lt;end&gt;<br>     * line starting with :children: has the id's of all children (See file specs. for details)<br>     */<br>     virtual string to_formatted_string() const;  // <font color="red">New !!</font><br><br>  };<br><br>  //end inc guards<br></pre>
+<br>
+<div class="codefile">reply.h</div>
+<pre class="prettyprint"> <br> <br>  //inclusion guards<br>  //includes<br><br>  class Reply: public Message<br>  {<br>   //<font color="red"><span style="font-variant: normal;"><span style="font-family: monospace;"> no new member variables</span></span></font><br><br>   public:<br>     //default constructor<br>     Reply();<br><br>     /* Parameterized constructor - similar to Message's constructor except:<br>     *  The subject should be initialized to "Re: &lt;sbjct&gt;" not &lt;sbjct&gt;.<br>     */<br>     Reply(const string&amp; athr, const string&amp; sbjct, const string&amp; body, unsigned id);<br><br>     /* print the reply to screen in the given format - see output specs for details<br>     * Then it invokes <b>print_subtree(n)</b> on each of the messages in child_list <br>     * <i>(we leave it to you to figure out what n is!)</i><br>     */<br>     virtual void print() const;<br>     <br>     /* This function is responsible for printing the selected Reply <i>and all of its subtree <b>recursively</b></i><br>     * After printing the Reply with the given indentation and format (see output details).<br>     * it calls the print_subtree function of all of the Replies in its child_list(see message)<br>     * with incremented indentation value. <br>     *<br>     * Note: Each indentation value represent 2 spaces. e.g. if indentation=1 the reply should be indented<br>     * 2 spaces, if it's 2, indent by 4 spaces. <br>     */       <br>     virtual void print_subtree(unsigned indentation) const; // <font color="red">New !!</font><br>     <br>     virtual bool is_reply() const; <br>     <br>     /* to_formatted_string writes the contents of the Reply to a string in the following format:<br>         <b>&lt;begin_reply&gt;</b><br>         :id: 4<br>         :subject: single line<br>         :from: author<br>         :children: 5 6 [this line should not be printed if there are no children.]<br>         :body: multiple lines<br>         2nd line<br>         &lt;end&gt;<br>      * the line starting with :children: has the list of id's of all children (See file specs. for details)<br>      */<br>     virtual string to_formatted_string() const; // <font color="red">New !!</font><br>       <br>  };<br><br>  //end inc guards<br></pre>
+<br>
+</div>
+</div>
+
+<div class="section">
+<h2>Main Function</h2>
+<p>Use the main function, below to run your work with.</p>
+<div class="codefile">main.cpp</div>
+<pre class="prettyprint">  //includes<br><br>  int main(int argc, char** argv)<br>  {<br>    // check commandline arguments <i>(see Chapter 9, section 9.5 of the text for explanations and examples)</i>   <br>    if(argc != 3){<br>        cout &lt;&lt; "ERROR: Invalid program call."&lt;&lt; endl<br>        &lt;&lt; "Usage: &lt;program_name&gt; userfile datafile"&lt;&lt; endl;<br>        return -1;<br>    }<br>    string userfile(argv[1]);<br>    string datafile(argv[2]);<br>   <br>    Bboard bb("CS12 Bulletin Board");<br>   <br>    // load users from file<br>    if( !bb.load_users(userfile) )<br>    {<br>     cout &lt;&lt; "ERROR: Cannot load users from "&lt;&lt;userfile&lt;&lt; endl;<br>     return -1<br>    }<br>   <br>    // load messages   <br>    if( !bb.load_messages(datafile) )<br>    {<br>     cout &lt;&lt; "ERROR: Cannot load messages from "&lt;&lt; datafile&lt;&lt; endl;<br>     return -1<br>    }<br>   <br>    bb.login();<br>    bb.run();<br><br>    // save messages<br>    if( !bb.save_messages(datafile) )<br>    {<br>     cout &lt;&lt; "ERROR: Cannot save messages to "&lt;&lt;datafile&lt;&lt; endl;<br>     return -1<br>    }<br>    return 0;<br>  } <br> <br></pre>
+<p> Next use the login function to display a welcome message, and then
+ask the user to login (provide username and password), and set the
+current_user (or quit).<br>
+</p>
+<p>Finally you'll just call the run function which includes the main
+loop.</p>
+</div>
+
+<div class="section">
+<h2>Input Specifications</h2>
+<div class="subsection">
+<h3>Keyboard Input Specifications <i>(Same as before)</i></h3>
+<ul>
+  <li>When the user is asked to select a menu item, the only valid
+inputs are 'D', 'd', 'N', 'n', 'R', 'r, 'Q' and 'q' - not "quit","new",
+"Quit" etc.</li>
+  <li>See sample output for details.</li>
+</ul>
+</div>
+</div>
+
+<div class="section">
+<h2>File Format Specifications:</h2>
+<div class="subsection">
+<h3>User File Specifications:</h3>
+The user file is formatted in the following way:
+<pre class="prettyprint">    user1 pass1<br>    user2 pass2<br>    user3 pass3<br>    ...<br>    end<br></pre>
+<p> The number of users is not fixed.<br>
+Use ifstream to read from file. An example file is below: </p>
+<p> </p>
+<div class="codefile">users1.txt</div>
+<pre class="cpre">ali87   8422<br>ricq7   bjk1903<br>messi   buneyinnessi<br>mike   ini99ou<br>jenny   Y00L11A09<br>end<br></pre>
+</div>
+<div class="subsection">
+<h3>Message File Specifications:</h3>
+The format of the file should be as below:
+<pre class="cpre">      numberofmessages<br>      <b>&lt;begin_topic&gt;</b><br>      :id: 1<br>      :subject: single line<br>      :from: author<br>      :body: multiple lines<br>      line 2<br>      &lt;end&gt;<br>      <b>&lt;begin_topic&gt;</b><br>      :id: 2<br>      :subject: single line<br>      :from: author<br>      :children: 3 4 //This line is omitted if there are no child messages. See first and last blocks.<br>      :body: line 1<br>      line 2<br>      line 3<br>      &lt;end&gt;<br>      ...<br>      ...<br>      <b>&lt;begin_reply&gt;</b><br>      :id: 4<br>      :subject: single line<br>      :from: author<br>      :body: line1<br>      &lt;end&gt;<br>   </pre>
+<p> Here is an example message file you can use on your tests. </p>
+<div class="codefile">data1.txt</div>
+<pre class="cpre">10<br><b>&lt;begin_topic&gt;</b><br>:id: 1<br>:subject: CS12 Assignment 7<br>:from: messi<br>:children: 6 9<br>:body: The assignment is hard so go step by step.<br>You can read the Tips &amp; Tricks part for some help.<br>&lt;end&gt;<br><b>&lt;begin_topic&gt;</b><br>:id: 2<br>:subject: Your favorite TV show<br>:from: ricq7<br>:children: 3 5<br>:body: So guys, what is your favorite tv show?<br>&lt;end&gt;<br><b>&lt;begin_reply&gt;</b><br>:id: 3<br>:subject: Re: Your favorite TV show<br>:from: mike<br>:children: 4<br>:body: Game of Thrones is an awesome show but there are too many characters to remember.<br>We even did not see half of the families and still at least 20 important characters <br>are introduced already.<br>Is there anyplace that I can read about the characters?<br>&lt;end&gt;<br><b>&lt;begin_reply&gt;</b><br>:id: 4<br>:subject: Re: Re: Your favorite TV show<br>:from: ricq7<br>:children: 8<br>:body: Well the book is one hell of a resource.<br>And, the script is written very loyal to the text.<br>&lt;end&gt;<br><b>&lt;begin_reply&gt;</b><br>:id: 5<br>:subject: Re: Your favorite TV show<br>:from: ali87<br>:children: 7<br>:body: Whose line is it anyway!!!<br>Too bad, it is no more.<br>&lt;end&gt;<br><b>&lt;begin_reply&gt;</b><br>:id: 6<br>:subject: Re: CS12 Assignment 7<br>:from: messi<br>:body: BUMP<br>&lt;end&gt;<br> <b>&lt;begin_reply&gt;</b><br>:id: 7<br>:subject: Re: Re: Your favorite TV show<br>:from: jenny<br>:body: The cat!<br>Colin Mochrie is hilarious.<br>&lt;end&gt;<br><b>&lt;begin_reply&gt;</b><br>:id: 8<br>:subject: Re: Re: Re: Your favorite TV show<br>:from: mike<br>:body: I'll check that.<br>Thanks.<br>&lt;end&gt;<br><b>&lt;begin_reply&gt;</b><br>:id: 9<br>:subject: Re: CS12 Assignment 7<br>:from: messi<br>:body: BUMP<br>&lt;end&gt;<br><b>&lt;begin_topic&gt;</b><br>:id: 10<br>:subject: Towel Day<br>:from: messi<br>:body: Bring your towels on May 25.<br>See here: http://www.towelday.org/<br>&lt;end&gt;<br><br>   </pre>
+</div>
+<div class="subsection">
+<h3>Using the files </h3>
+<div class="codefile">How to Run the Program with users1.txt and
+data1.txt</div>
+<p><i>For the first time, we are using command line parameters: See
+Chapter 9, section 9.5 of the text for details</i></p>
+<pre class="terminal">  <br>               ./a.out users1.txt data1.txt<br>         </pre>
+</div>
+</div>
+
+<div class="section">
+<h2>Output Specifications</h2>
+<p> Read the examples below and make sure the output matches <span class="warn">exactly</span> with the sample runs below (with the same
+inputs) - in particular, note the differences between Topics and
+Replies.<br>
+</p>
+<div class="codefile">Sample run 1</div>
+<pre class="terminal"> <br>   $&gt;<span class="in">./a.out users1.txt data1.txt</span> <br>  <br>   Welcome to Jack's Amazing Bulletin Board<br>   Enter your username ('Q' or 'q' to quit): <span class="in">muzo</span> <br> <br>   Enter your password:<span class="in">cs12</span> <br>   Invalid Username or Password!<br> <br>   Enter your username('Q' or 'q' to quit): <span class="in">ali87</span> <br>   Enter your password: <span class="in">8422</span> <br>  <br>   Welcome back ali87!<br>   <br>   Menu<br>    - Display Messages ('D' or 'd')<br>    - Add New Topic ('N' or 'n')<br>    - Add Reply to a Topic ('R' or 'r')<br>    - Quit ('Q' or 'q')<br>   Choose an action: <span class="in">D</span> <br>   <br>   --------------------------------------------------------------------------------------------------------------------------------------------------<br>   Message #1: CS12 Assignment 7<br>   from messi: The assignment is hard so go step by step.<br>   You can read the Tips &amp; Tricks part for some help.<br>   Has anyone started already?<br>   <br>      Message #6: CS12 Assignment 7<br>      from messi: BUMP<br>   <br>      Message #9: CS12 Assignment 7<br>      from messi: BUMP<br>   ---------------------------------------------------------------------------------------------------------------------------------------------<br>   Message #2: Your favorite TV show<br>   from ricq7: So guys, what is your favorite tv show?<br>   <br>      Message #3: Re: Your favorite TV show<br>      from mike: Game of Thrones is an awesome show but there are too many characters to remember.<br>      We even did not see half of the families and still at least 20 important characters <br>      are introduced already.<br>      Is there anyplace that I can read about the characters?<br>   <br>          Message #4: Re: Re: Your favorite TV show<br>          from ricq7: Well the book is one hell of a resource.<br>          And, the script is written very loyal to the text.<br>   <br>              Message #8: Re: Re: Re: Your favorite TV show<br>              from mike: I'll check that.<br>   <br>      Message #5: Re: Your favorite TV show<br>      from ali87: Whose line is it anyway!!!<br>      Too bad, it is no more.<br>   <br>          Message #7: Re: Re: Your favorite TV show<br>          from jenny: The cat!<br>          Colin Mochrie is hilarious.<br>   --------------------------------------------------------------------------------------------------------------------------------------------------<br>   Message #10: Count down to Towel Day!!<br>   from messi: Bring your towels on May 25.<br>   See here: http://www.towelday.org/<br>   --------------------------------------------------------------------------------------------------------------------------------------------------<br><br>   Menu<br>    - Display Messages ('D' or 'd')<br>    - Add New Topic ('N' or 'n')<br>    - Add Reply to a Topic ('R' or 'r')<br>    - Quit ('Q' or 'q')<br>   Choose an action: <span class="in">R</span> <br><br>   Enter Message ID (-1 for Menu): <span class="in">5</span><br>   Enter Body: <span class="in">I heard ABC is thinking of reviving the series. They should<br>      definitely hire everyone back. </span><br>   Menu<br>    - Display Messages ('D' or 'd')<br>    - Add New Topic ('N' or 'n')<br>    - Add Reply to a Topic ('R' or 'r')<br>    - Quit ('Q' or 'q')<br>   Choose an action: <span class="in">R</span> <br><br>   Enter Message ID (-1 for Menu): <span class="in">10</span><br>   Enter Body: <span class="in">I did not know about that. It looks fun. I'll order this<br>      one immediately: http://www.royal-plus.de/dna/indexE.html !! </span><br>   Menu<br>    - Display Messages ('D' or 'd')<br>    - Add New Topic ('N' or 'n')<br>    - Add Reply to a Topic ('R' or 'r')<br>    - Quit ('Q' or 'q')<br>   Choose an action: <span class="in">R</span> <br><br>   Enter Message ID (-1 for Menu): <span class="in">0</span><br>   Invalid Message ID!!<br><br>   Enter Message ID (-1 for Menu): <span class="in">15</span><br>   Invalid Message ID!!<br><br>   Enter Message ID (-1 for Menu): <span class="in">-1</span><br><br>   Menu<br>    - Display Messages ('D' or 'd')<br>    - Add New Topic ('N' or 'n')<br>    - Add Reply to a Topic ('R' or 'r')<br>    - Quit ('Q' or 'q')<br>   Choose an action: <span class="in">D</span> <br>   <br>   --------------------------------------------------------------------------------------------------------------------------------------------------<br>   Message #1: CS12 Assignment 7<br>   from messi: The assignment is hard so go step by step.<br>   You can read the Tips &amp; Tricks part for some help.<br>   Has anyone started already?<br>   <br>      Message #6: CS12 Assignment 7<br>      from messi: BUMP<br>   <br>      Message #9: CS12 Assignment 7<br>      from messi: BUMP<br>   ---------------------------------------------------------------------------------------------------------------------------------------------<br>   Message #2: Your favorite TV show<br>   from ricq7: So guys, what is your favorite tv show?<br>   <br>      Message #3: Re: Your favorite TV show<br>      from mike: Game of Thrones is an awesome show but there are too many characters to remember.<br>      We even did not see half of the families and still at least 20 important characters <br>      are introduced already.<br>      Is there anyplace that I can read about the characters?<br>   <br>          Message #4: Re: Re: Your favorite TV show<br>          from ricq7: Well the book is one hell of a resource.<br>          And, the script is written very loyal to the text.<br>   <br>              Message #8: Re: Re: Re: Your favorite TV show<br>              from mike: I'll check that.<br>   <br>      Message #5: Re: Your favorite TV show<br>      from ali87: Whose line is it anyway!!!<br>      Too bad, it is no more.<br>   <br>          Message #7: Re: Re: Your favorite TV show<br>          from jenny: The cat!<br>          Colin Mochrie is hilarious.<br><br>          Message #11: Re: Re: Your favorite TV show<br>          from ali87: I heard that ABC is thinking on reviving the series.<br>   They should definitely hire everyone back.<br>   --------------------------------------------------------------------------------------------------------------------------------------------------<br>   Message #10: Count down to Towel Day!!<br>   from messi: Bring your towels on May 25.<br>   See here: http://www.towelday.org/<br><br>      Message #12: Re: Count down to Towel Day!!<br>      from ali87: I did not know about that.<br>      It looks fun.<br>      I'll order this one immediately: http://www.royal-plus.de/dna/indexE.html !!<br>   --------------------------------------------------------------------------------------------------------------------------------------------------<br><br>   Menu<br>    - Display Messages ('D' or 'd')<br>    - Add New Topic ('N' or 'n')<br>    - Add Reply to a Topic ('R' or 'r')<br>    - Quit ('Q' or 'q')<br>   Choose an action: <span class="in">Q</span> <br>   Bye!<br><br></pre>
+<center> <font color="red">When the program terminates, data1.txt
+should have been updated.<br>
+So the next time you run the program and login, you'll see all the
+messages that were added in the previous session.</font> </center>
+</div>
+
+<div class="section">
+<h3>Compiling and Testing</h3>
+<p>In this assignment, you are required to write and submit your own
+Makefile.<br>
+Make sure you include all the necessary compile flags: <tt>-W -Wall
+-Werror -pedantic -ansi</tt></p>
+</div>
+
+<div> This is what we will be looking for when grading your work:
+<ul>
+  <li>User Class</li>
+  <li>Message Class</li>
+  <li>Topic Class</li>
+  <li>Reply Class</li>
+  <li>Bboard::setup function reads the user info to user_list
+successfully.</li>
+  <li>Bboard::login function works as decribed and sets the current
+user.</li>
+  <li>Bboard::run function displays the menu items and follows the
+user's commands successfully as shown in sample runs.</li>
+  <li><b>Output Requirements:</b> The output should match <b><u>EXACTLY</u></b>
+with the samples.</li>
+</ul>
+<table id="rubrictable">
+</table>
+</div>
+
+<div>
+<div class="section">
+<h2>What to Submit</h2>
+For this assignment you will turn in the following files:
+<ul>
+  <li>main.cpp (Your test harness.)</li>
+  <li>Makefile </li>
+  <li>bboard.h (with exact interface given in specs.)</li>
+  <li>bboard.cpp</li>
+  <li>user.h (with exact interface given in specs.)</li>
+  <li>user.cpp</li>
+  <li>message.h (with exact interface given in specs.)</li>
+  <li>message.cpp</li>
+  <li>topic.h (with exact interface given in specs.)</li>
+  <li>topic.cpp</li>
+  <li>reply.h (with exact interface given in specs.)</li>
+  <li>reply.cpp</li>
+</ul>
+<p> As always, all files should be simple text files with correct
+naming. Files in ANY other format (MS Word document, etc.) or with ANY
+other name (main, main.doc, main.txt, Main, Bboard.cpp, User.h etc.) <b>will
+not be graded</b></p>
+<p> When you have completed your assignment, you can tar and zip up all
+source code files for this assignment with the command:</p>
+<pre class="terminal">tar -czvf assn7.tgz Makefile bboard.h bboard.cpp message.h message.cpp reply.cpp reply.h topic.cpp topic.h user.h user.cpp main.cpp</pre>
+<p> Submit the resulting file (assn7.tgz) in the appropriate turnin
+link within ILearn. <b>Re-download your work and compile it. If the
+code does not compile it will not be graded</b>. </p>
+</div>
+</div>
+
+<div>
+<h2>Step-by-Step Approach</h2>
+<ul>
+  <li>Copy your work from previous assignment (Make sure it works
+perfectly!)</li>
+  <br>
+  <li>Message File Read:<br>
+    <ul>
+      <br>
+      <li>Read from a simple file that has only a single Topic, and add
+the pointer to it to message_list in load_messages.</li>
+      <br>
+      <li>Now read from another simple file that has only one Topic and
+one Reply to that topic, and add it to message_list in load_messages.</li>
+      <br>
+      <li>Now read in a file with multiple Topics and Replies (you will
+need a loop, of course!!)</li>
+      <br>
+    </ul>
+  </li>
+  <br>
+  <li>Message File Write:<br>
+    <ul>
+      <br>
+      <li>Build the to_formatted_string() function in Reply</li>
+      <br>
+      <li>Build the to_formatted_string() function in Topic</li>
+      <br>
+      <li>In Bboard::save_messages() call to_formatted_string() on each
+Message in message_list and print the returning strings to
+screen/terminal for debugging. </li>
+      <br>
+      <li>Finally, print the strings to file instead of terminal</li>
+      <br>
+      <li>Nested Replies and Display<br>
+        <ul>
+          <br>
+          <li>Modify message.h, topic.h and reply.h files as specified</li>
+          <br>
+          <li>Implement print_subtree in reply.cpp and add_child in
+message.cpp</li>
+          <br>
+          <li>Modify the print function in topic.cpp to call
+print_subtree on each of it's children after printing the topic itself</li>
+          <br>
+          <li>In Bboard, modify display and add_reply functions as
+specified. </li>
+          <br>
+          <li>Have your program run correctly with nested replies</li>
+          <br>
+        </ul>
+      </li>
+      <br>
+    </ul>
+  </li>
+  <br>
+</ul>
+<h2>Hints:</h2>
+<ul>
+  <li><b>Reading from file: </b><br>
+Be very careful assigning "children" (Replies)!!! The children Messages
+will not be in memory when you are reading the parent, due to their
+order in the file.<br>
+One way of doing this would be:<br>
+For each Message (whether Topic or Reply), maintain a separate string
+vector that stores the strings following the ":children:" tag (e.g., "5
+6 21").<br>
+When you finish populating the message_list (or after you close the
+file), parse the strings (see hint below), construct the Reply objects,
+and store their POINTERS.<br>
+e.g.
+    <pre>message_list[i].add_child(message_list[child-1]);</pre>
+for each element (child) in the corresponding string.<br>
+    <i><u>Make sure you add an empty string to any string vector with
+no :children: tag.</u></i><br>
+    <br>
+Alternatively, you could construct a Message, then traverse that
+Message's child_list and construct a default (empty) Reply for each
+entry - just make sure you know where to place their pointers in
+Bboard's message_list, and that you complete their initialization
+correctly when you come to their listing in the file. </li>
+</ul>
+<div class="codefile">Using stringstream to parse message files</div>
+<center>
+<p><b><i>Review the stringstream section in the online text! (Section
+9.4)</i></b></p>
+</center>
+<pre class="prettyprint">void parse_for_children( vector&lt;int&gt; &amp; child_list, string &amp; filename )<br> {<br>  ifstream infile(filename.c_str());<br>  string discard;<br>  int child_id;<br>  string child_id_string;<br><br>  infile &gt;&gt; discard &gt;&gt; discard; // discard &lt;begin_?????&gt; and :children:<br>  // WARNING: this function is just a HINT - in your actual program you will need to know<br>  // when you are dealing with a reply or a topic<br>  <br>  getline(infile, child_id_string); // get string containing all child ids<br>  <br>  stringstream iss(child_id_string);<br>  while (iss &gt;&gt; child_id) child_list.push_back(child_id);<br> }<br> </pre>
+</div>
+
+</body></html>Ytext/htmlUUTF-8P    ( 7 I _ } îû˝üü                           ü
