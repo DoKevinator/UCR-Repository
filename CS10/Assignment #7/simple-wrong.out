@@ -1,0 +1,70 @@
+Enter phrase: 
+
+c
+
+Phrase: -----
+
+Enter a guess: 
+
+c
+
+Phrase: -----
+
+Guessed so far: p
+Wrong guesses left: 6
+
+Enter a guess: 
+
+c
+
+Phrase: -----
+
+Guessed so far: pq
+Wrong guesses left: 5
+
+Enter a guess: 
+
+c
+
+Phrase: -----
+
+Guessed so far: pqr
+Wrong guesses left: 4
+
+Enter a guess: 
+
+c
+
+Phrase: -----
+
+Guessed so far: pqrs
+Wrong guesses left: 3
+
+Enter a guess: 
+
+c
+
+Phrase: -----
+
+Guessed so far: pqrst
+Wrong guesses left: 2
+
+Enter a guess: 
+
+c
+
+Phrase: -----
+
+Guessed so far: pqrstu
+Wrong guesses left: 1
+
+Enter a guess: 
+
+c
+
+Phrase: -----
+
+Guessed so far: pqrstuv
+Wrong guesses left: 0
+
+You lost!

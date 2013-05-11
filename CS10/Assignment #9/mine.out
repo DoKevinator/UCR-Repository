@@ -1,0 +1,101 @@
+
+c
+
+  a  |  b  |  c  
+-----|-----|-----
+  d  |  e  |  f  
+-----|-----|-----
+  g  |  h  |  i  
+
+Please choose a position: 
+
+c
+
+  X  |  b  |  c  
+-----|-----|-----
+  d  |  e  |  f  
+-----|-----|-----
+  g  |  h  |  i  
+
+Please choose a position: 
+
+c
+
+  X  |  b  |  c  
+-----|-----|-----
+  d  |  O  |  f  
+-----|-----|-----
+  g  |  h  |  i  
+
+Please choose a position: 
+Please choose a position: 
+
+c
+
+  X  |  X  |  c  
+-----|-----|-----
+  d  |  O  |  f  
+-----|-----|-----
+  g  |  h  |  i  
+
+Please choose a position: 
+
+c
+
+  X  |  X  |  O  
+-----|-----|-----
+  d  |  O  |  f  
+-----|-----|-----
+  g  |  h  |  i  
+
+Please choose a position: 
+
+c
+
+  X  |  X  |  O  
+-----|-----|-----
+  d  |  O  |  f  
+-----|-----|-----
+  X  |  h  |  i  
+
+Please choose a position: 
+
+c
+
+  X  |  X  |  O  
+-----|-----|-----
+  O  |  O  |  f  
+-----|-----|-----
+  X  |  h  |  i  
+
+Please choose a position: 
+
+c
+
+  X  |  X  |  O  
+-----|-----|-----
+  O  |  O  |  X  
+-----|-----|-----
+  X  |  h  |  i  
+
+Please choose a position: 
+
+c
+
+  X  |  X  |  O  
+-----|-----|-----
+  O  |  O  |  X  
+-----|-----|-----
+  X  |  O  |  i  
+
+Please choose a position: 
+
+c
+
+  X  |  X  |  O  
+-----|-----|-----
+  O  |  O  |  X  
+-----|-----|-----
+  X  |  O  |  X  
+
+No one wins

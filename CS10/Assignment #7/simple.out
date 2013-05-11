@@ -1,0 +1,53 @@
+Enter phrase: 
+
+c
+
+Phrase: -----
+
+Enter a guess: 
+
+c
+
+Phrase: h----
+
+Guessed so far: h
+Wrong guesses left: 7
+
+Enter a guess: 
+
+c
+
+Phrase: he---
+
+Guessed so far: he
+Wrong guesses left: 7
+
+Enter a guess: 
+
+c
+
+Phrase: hell-
+
+Guessed so far: hel
+Wrong guesses left: 7
+
+Enter a guess: 
+
+c
+
+Phrase: hell-
+
+Guessed so far: held
+Wrong guesses left: 6
+
+Enter a guess: 
+Invalid guess! Please re-enter a guess: 
+
+c
+
+Phrase: hello
+
+Guessed so far: heldo
+Wrong guesses left: 6
+
+Congratulations!!
