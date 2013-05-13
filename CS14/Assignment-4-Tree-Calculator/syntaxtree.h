@@ -21,10 +21,26 @@
 #define __SYNTAXTEE_H_
 
 
+struct Node {
+	
+	
+};
+
+
+
+class SyntaxTree {
+  
+private:
+	Node* root;
+
+public:
+
+  
+};
 
 
 
 
-#endif
+#endif	//__SYNTAXTEE_H_
 
 
