@@ -1,0 +1,121 @@
+node "Alaska" 1 blue
+edge "Alaska" "Northwest Territory"
+edge "Alaska" "Alberta"
+edge "Alaska" "Kamchatka"
+node "Northwest Territory" 1 yellow
+edge "Northwest Territory" "Greenland"
+edge "Northwest Territory" "Ontario"
+edge "Northwest Territory" "Alberta"
+node "Greenland" 2 green
+edge "Greenland" "Ontario"
+edge "Greenland" "Quebec"
+edge "Greenland" "Iceland"
+node "Alberta" 4 purple
+edge "Alberta" "Ontario"
+edge "Alberta" "Western United States"
+node "Ontario" 3 blue
+edge "Ontario" "Quebec"
+edge "Ontario" "Eastern United States"
+edge "Ontario" "Western United States"
+node "Quebec" 1 yellow
+edge "Quebec" "Eastern United States"
+node "Western United States" 15 blue
+edge "Western United States" "Eastern United States"
+node "Eastern United States" 4294967295 blue
+node "Central America" 1 yellow
+edge "Central America" "Western United States"
+edge "Central America" "Eastern United States"
+edge "Central America" "Venezuela"
+node "Venezuela" 1 yellow
+edge "Venezuela" "Peru"
+edge "Venezuela" "Brazil"
+node "Brazil" 34 green
+edge "Brazil" "Peru"
+edge "Brazil" "Argentina"
+edge "Brazil" "North Africa"
+node "Peru" 12 purple
+edge "Argentina" "Peru"
+node "Argentina" 1 yellow
+node "North Africa" 4 green
+edge "North Africa" "Western Europe"
+edge "North Africa" "Southern Europe"
+edge "North Africa" "Egypt"
+edge "North Africa" "East Africa"
+edge "North Africa" "Congo"
+node "Egypt" 13 purple
+edge "Egypt" "Southern Europe"
+edge "Egypt" "Middle East"
+edge "Egypt" "East Africa"
+node "East Africa" 37 green
+edge "East Africa" "Congo"
+edge "East Africa" "South Africa" 
+edge "East Africa" "Madagascar"
+node "Congo" 45 yellow
+edge "Congo" "South Africa"
+node "South Africa" 9 blue
+edge "South Africa" "Madagascar"
+node "Madagascar" 12 yellow
+node "Iceland" 11 green
+edge "Iceland" "Scandinavia"
+edge "Iceland" "Great Britain"
+node "Scandinavia" 11 yellow
+edge "Scandinavia" "Ukraine"
+edge "Scandinavia" "Northern Europe"
+edge "Scandinavia" "Great Britain"
+node "Great Britain" 1 yellow
+edge "Great Britain" "Western Europe"
+node "Western Europe" 12 yellow
+edge "Western Europe" "Northern Europe"
+edge "Western Europe" "Southern Europe"
+node "Northern Europe" 11 blue
+edge "Northern Europe" "Ukraine"
+edge "Northern Europe" "Southern Europe"
+node "Southern Europe" 2 green
+edge "Southern Europe" "Middle East"
+node "Ukraine" 257 purple
+edge "Ukraine" "Middle East"
+edge "Ukraine" "Ural"
+edge "Ukraine" "Afghanistan"
+node "Middle East" 257 purple
+edge "Middle East" "India"
+edge "Middle East" "Afghanistan"
+node "Afghanistan" 1 green
+edge "Afghanistan" "India"
+edge "Afghanistan" "China"
+edge "Afghanistan" "Ural"
+node "Ural" 2 green
+edge "Ural" "Siberia"
+edge "Ural" "China"
+node "Siberia" 12 green
+edge "Siberia" "Yakutsk"
+edge "Siberia" "Irkutsk"
+edge "Siberia" "Mongolia"
+edge "Siberia" "China"
+node "Yakutsk" 35 green
+edge "Yakutsk" "Kamchatka"
+edge "Yakutsk" "Irkutsk"
+node "Kamchatka" 12 green
+edge "Kamchatka" "Mongolia"
+edge "Yakutsk" "Japan"
+node "Irkutsk" 1 green
+edge "Irkutsk" "Mongolia"
+node "Mongolia" 12 green
+edge "Mongolia" "Japan"
+edge "Mongolia" "China"
+node "Japan" 1 green
+node "China" 1 green
+edge "China" "Siam"
+edge "China" "India"
+node "India" 12 green
+edge "India" "Siam"
+node "Siam" 4294967297 green
+edge "Siam" "Indonesia"
+node "Indonesia" 45 yellow
+edge "Indonesia" "New Guinea"
+edge "Indonesia" "Western Australia"
+node "New Guinea" 1 yellow
+edge "Western Australia" "New Guinea"
+edge "Eastern Australia" "New Guinea"
+node "Western Australia" 1 yellow
+node "Eastern Australia" 1 yellow
+edge "Eastern Australia" "Western Australia"

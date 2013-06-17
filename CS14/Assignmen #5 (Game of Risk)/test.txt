@@ -1,0 +1,9 @@
+node "A" 4 green
+node "B" 5 green
+node "C" 50 purple
+node "D" 20 blue
+edge "A" "B"
+edge "A" "C"
+edge "B" "C"
+edge "C" "D"
+edge "B" "D"
