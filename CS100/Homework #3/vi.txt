@@ -1,0 +1,78 @@
+/*
+* Course: CS 100 Fall 2013 *
+* First Name: Kevin
+* Last Name: Do
+* Username: kdo009
+* email address: kdo009@ucr.edu
+*
+* Assignment: Homework #3
+* I hereby certify that the contents of this file represent
+* my own original individual work. Nowhere herein is there
+* code from any outside resources such as another individual,
+* a website, or publishings unless specifically designated as
+* permissible by the instructor or TA. */
+
+*I am using VIM*
+
+Homer Simpson is intelligent
+b 							//goes to beginning of intelligent
+D 							//deletes everything from cursor and beyond
+a    						//insert
+"an idiot" <esc> 			
+ma 							//marks current spot
+^ 							//goes to beginning of line
+"IF" <esc>
+`a 							//goes back to marker
+w 							//goes to end of "idiot"
+a 							//insert
+" savant" <esc>
+^ 							//goes to beginning of line
+l 							//goes right one charcter
+~ 							//changes the case of highlighted character
+^ 							//goes to beginning of line
+i 							//insert
+"\n" <esc>
+:wq 						//saves and quits
+
+
+--------------------------------------
+Insert Macro
+
+qf 							//makes a macro in register "f"
+i 							//insert
+ 
+for(;;)						//make for loop
+{
+	
+}
+
+*go back to first semicolon*
+Ctrl + O 				//next time user comes back, leaves them in insert mode
+q 						//stop recording macro
+
+
+
+
+-------------------------------------
+Command Macro
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,146 @@
+Script started on Thu 17 Oct 2013 11:08:30 AM PDT
+~
+
+kdo009@well $ pwd
+/home/csmajs/kdo009
+~
+
+kdo009@well $ cd cs/100[K[K[K[K1-[K00/hw/hw1[K2
+~/cs100/hw/hw2
+
+kdo009@well $ ls
+[0m[0mbestMain.cc[0m    [0mCoins.cc[0m  [0mhw2.tgz[0m  [0mMakefile[0m  [01;34mtest[0m/
+[0mbetterMain.cc[0m  [0mCoins.h[0m   [0mmain.cc[0m  [0mmy_ls.cc[0m  [0mtypescript[0m
+[m~/cs100/hw/hw2
+
+kdo009@well $ make main
+g++  -c Coins.cc
+g++  -o main main.cc Coins.o
+~/cs100/hw/hw2
+
+kdo009@well $ ./main
+I started with 100 quarter(s), 10 dime(s), 10 nickel(s), 100 pennie(s) in my pocket
+I bought a candy bar for 482 cents using 19 quarter(s), 0 dime(s), 1 nickel(s), 2 pennie(s)
+I have 81 quarter(s), 10 dime(s), 9 nickel(s), 98 pennie(s) left in my pocket
+~/cs100/hw/hw2
+
+kdo009@well $ make betterMain
+g++  -o betterMain betterMain.cc Coins.o
+~/cs100/hw/hw2
+
+kdo009@well $ ./betterMain
+I bought a bag of chips for 68 cents using 2 quarter(s), 1 dime(s), 1 nickel(s), 3 pennie(s)
+I have 3 quarter(s), 2 dime(s), 5 nickel(s), 5 pennie(s) left in my pocket.
+
+I currently have 50 quarter(s), 50 dime(s), 50 nickel(s), 50 pennie(s) in my piggy bank.
+I now deposited all my change in the piggy bank to my pocket. I now have 53 quarter(s), 52 dime(s), 55 nickel(s), 55 pennie(s).
+I have 0 quarter(s), 0 dime(s), 0 nickel(s), 0 pennie(s) left in my piggy bank.
+
+I found 8 quarter(s), 24 dime(s), 3 nickel(s), 56 pennie(s) in my sofa. 
+
+I deposited all the sofa change into my piggy bank. 
+I now have 8 quarter(s), 24 dime(s), 3 nickel(s), 56 pennie(s) in my piggy bank. 
+~/cs100/hw/hw2
+
+kdo009@well $ make bestMain
+g++  -o bestMain bestMain.cc Coins.o
+~/cs100/hw/hw2
+
+kdo009@well $ ./bestMain
+Menu:
+e - Extract change
+d - Deposit change
+p - Print balance
+q - Quit
+Enter a letter: p
+You currently have 0 quarter(s), 0 dime(s), 0 nickel(s), 0 pennie(s). 
+Menu:
+e - Extract change
+d - Deposit change
+p - Print balance
+q - Quit
+Enter a letter: e
+Enter an amount to extract: 123
+Do not have sufficient amount.
+Menu:
+e - Extract change
+d - Deposit change
+p - Print balance
+q - Quit
+Enter a letter: d
+Enter quarters to deposit: 1
+Enter dimes to deposit: 1
+Enter nickels to deposit: 1
+Enter pennies to deposit: 1
+Menu:
+e - Extract change
+d - Deposit change
+p - Print balance
+q - Quit
+Enter a letter: e
+Enter an amount to extract: 39
+Do not have sufficient amount.
+Menu:
+e - Extract change
+d - Deposit change
+p - Print balance
+q - Quit
+Enter a letter: p
+You currently have 1 quarter(s), 1 dime(s), 1 nickel(s), 1 pennie(s). 
+Menu:
+e - Extract change
+d - Deposit change
+p - Print balance
+q - Quit
+Enter a letter: q
+Goodbye!
+~/cs100/hw/hw2
+
+kdo009@well $ make my_ls
+g++  -o my_ls my_ls.cc 
+~/cs100/hw/hw2
+
+kdo009@well $ ./my_ls
+hw2.tgz
+typescript
+main.cc
+betterMain.cc
+bestMain.cc
+Coins.cc
+Coins.h
+my_ls.cc
+Makefile
+
+./test:
+	test.txt
+	test2.txt
+	test3.txt
+	
+./test2:
+		input.txt
+		input2.txt
+Coins.o
+main
+betterMain
+bestMain
+my_ls
+~/cs100/hw/hw2
+
+kdo009@well $ ./my_ls test
+test.txt
+test2.txt
+test3.txt
+
+./test2:
+	input.txt
+	input2.txt
+~/cs100/hw/hw2
+
+kdo009@well $ ./my_ls main.cc
+-rw------- 	1	1092	Thu, 17.10.2013 04:51:37	main.cc
+~/cs100/hw/hw2
+
+kdo009@well $ exit
+exit
+
+Script done on Thu 17 Oct 2013 11:09:57 AM PDT

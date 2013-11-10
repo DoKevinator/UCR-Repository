@@ -1,0 +1,214 @@
+Script started on Thu 10 Oct 2013 01:23:54 AM PDT
+~
+
+kdo009@well $ pwd
+/home/csmajs/kdo009
+~
+
+kdo009@well $ cd cs100/hw/hw1
+~/cs100/hw/hw1
+
+kdo009@well $ ls
+[0m[0minput.txt[0m  [0moutput.txt[0m  [0mrolodex.cc[0m  [0mstack.cc[0m  [0mstack.h[0m  [0mtest.tgz[0m  [0mtypescript[0m
+[m~/cs100/hw/hw1
+
+kdo009@well $ g++ -o stack stack.cc
+~/cs100/hw/hw1
+
+kdo009@well $ ./stack
+Enter a word: world
+dlrow
+Enter a word: hello
+olleh
+Enter a word: k
+k
+Enter a word: racecar
+racecar
+Enter a word: cs100
+001sc
+Enter a word: oooo
+oooo
+Enter a word: ~/cs100/hw/hw1
+
+kdo009@well $ g++ -o rolodex rolodex.cc
+~/cs100/hw/hw1
+
+kdo009@well $ ./rolodex
+Welcome to Rolodex!
+i - Insert an address
+f - Find an address
+d - Delete an address
+p - Print all addresses 
+l - Load addresses
+s - Save addresses
+q - Quit
+Enter a letter: p
+Nothing in the rolodex.
+i - Insert an address
+f - Find an address
+d - Delete an address
+p - Print all addresses 
+l - Load addresses
+s - Save addresses
+q - Quit
+Enter a letter: i
+Enter a first name: Kevin
+Enter a last name: Do
+Enter an address: 1222 eagle ridge way
+Enter a phone number: 777 7777
+i - Insert an address
+f - Find an address
+d - Delete an address
+p - Print all addresses 
+l - Load addresses
+s - Save addresses
+q - Quit
+Enter a letter: p
+-------------------------------------------
+Do, Kevin
+	1222 eagle ridge way
+	777 7777
+
+i - Insert an address
+f - Find an address
+d - Delete an address
+p - Print all addresses 
+l - Load addresses
+s - Save addresses
+q - Quit
+Enter a letter: d
+Enter a last name: Do
+i - Insert an address
+f - Find an address
+d - Delete an address
+p - Print all addresses 
+l - Load addresses
+s - Save addresses
+q - Quit
+Enter a letter: p
+Nothing in the rolodex.
+i - Insert an address
+f - Find an address
+d - Delete an address
+p - Print all addresses 
+l - Load addresses
+s - Save addresses
+q - Quit
+Enter a letter: l
+Enter a file name: input.txt
+i - Insert an address
+f - Find an address
+d - Delete an address
+p - Print all addresses 
+l - Load addresses
+s - Save addresses
+q - Quit
+Enter a letter: p
+-------------------------------------------
+berryhill, amanda
+	102 Meadowland Drive
+	101010101010
+
+do, kevin
+	1222 Eagle Ridge Way
+	4089661178
+
+jan, justin
+	rowland heights
+	333 3333
+
+linard, brian
+	999 Good Teacher Ave
+	411
+
+ton, david
+	university avenue
+	666 6666
+
+i - Insert an address
+f - Find an address
+d - Delete an address
+p - Print all addresses 
+l - Load addresses
+s - Save addresses
+q - Quit
+Enter a letter: f
+Enter a last name: jan
+-------------------------------------------
+justin's address is rowland heights
+
+justin's phone number is 333 3333
+
+i - Insert an address
+f - Find an address
+d - Delete an address
+p - Print all addresses 
+l - Load addresses
+s - Save addresses
+q - Quit
+Enter a letter: s
+Enter a file name to save to: output.txt
+Saved!
+i - Insert an address
+f - Find an address
+d - Delete an address
+p - Print all addresses 
+l - Load addresses
+s - Save addresses
+q - Quit
+Enter a letter: i
+Enter a first name: joe
+Enter a last name: bob
+Enter an address: 1234 cool street
+Enter a phone number: 555 5555
+i - Insert an address
+f - Find an address
+d - Delete an address
+p - Print all addresses 
+l - Load addresses
+s - Save addresses
+q - Quit
+Enter a letter: p
+-------------------------------------------
+berryhill, amanda
+	102 Meadowland Drive
+	101010101010
+
+bob, joe
+	1234 cool street
+	555 5555
+
+do, kevin
+	1222 Eagle Ridge Way
+	4089661178
+
+jan, justin
+	rowland heights
+	333 3333
+
+linard, brian
+	999 Good Teacher Ave
+	411
+
+ton, david
+	university avenue
+	666 6666
+
+i - Insert an address
+f - Find an address
+d - Delete an address
+p - Print all addresses 
+l - Load addresses
+s - Save addresses
+q - Quit
+Enter a letter: q
+Would you like to save before you quit? (y/n): 
+y
+Enter a file name to save to: output.txt
+Saved!
+~/cs100/hw/hw1
+
+kdo009@well $ exit
+exit
+
+Script done on Thu 10 Oct 2013 01:27:35 AM PDT

@@ -1,0 +1,385 @@
+Script started on Tue 05 Nov 2013 03:26:13 AM PST
+~^M^M
+kdo009@well $ cd cs100/hw/hw4^M
+~/cs100/hw/hw4^M^M
+kdo009@well $ ls^M
+^[[0m^[[0m????^[[0m               ^[[0mMakefile^[[0m       ^[[0mString.cc^[[0m            ^[[0mtypescript^[[0m   ^[[0mX? ?2^[[0m^M
+^[[0mhandle_signals.cc^[[0m  ^[[0mmy_shell.cc^[[0m    ^[[0mString.h^[[0m             ^[[0munix.txt^[[0m^M
+^[[0mhw4.tgz^[[0m            ^[[0mnewOutputFile^[[0m  ^[[0mtestLinkedString.cc^[[0m  ^[[0mwOutputFile^[[0m^M
+^[[m~/cs100/hw/hw4^M^M
+kdo009@well $ make^M
+g++  -c String.cc^M
+g++  -o testLinkedString testLinkedString.cc String.o^M
+g++  -o handle_signals handle_signals.cc^M
+g++  -o my_shell my_shell.cc^M
+~/cs100/hw/hw4^M^M
+kdo009@well $ ./testLinkedString^M
+^M
+Constructor: ^M
+String s("Hello")^M
+Hello^@^M
+-----------------^M
+Copy constructor: ^M
+String s_copy(s)^M
+Hello^@^M
+-----------------^M
+Assignment operator: ^M
+String assn_cpy = s^M
+Hello^@^M
+-----------------^M
+operator[] test: ^M
+s[0]: H^M
+s[1]: e^M
+s[2]: l^M
+s[3]: l^M
+s[4]: o^M
+-----------------^M
+length() test: ^M
+s.length(): 5^M
+-----------------^M
+indexOf(char c) test: ^M
+s.indexOf('H'): 0^M
+s.indexOf('e'): 1^M
+s.indexOf('l'): 2^M
+s.indexOf('o'): 4^M
+s.indexOf('z'): -1^M
+-----------------^M
+operator== test: ^M
+^M
+same: "Hello" ^M
+not_same: "Hallo" ^M
+Does s == same? true^M
+Does s == not_same? false^M
+-----------------^M
+operator+ test^M
+first: "cs" ^M
+second: "100" ^M
+first + second: cs^@100^@^M
+-----------------^M
+operator+= test^M
+first: "cs" ^M
+second: "100" ^M
+first += second: cs^@100^@^M
+-----------------^M
+operator>> test: ^M
+cs100^M
+cs100^@^M
+-----------------^M
+~/cs100/hw/hw4^M^M
+kdo009@well $ ./handle_signals^M
+XXXXXIXXIXIXXQXQXQXXXXS^M
+[1]+  Stopped                 ./handle_signals^M
+~/cs100/hw/hw4^M^M
+kdo009@well $ fg^M
+./handle_signals^M
+XXXQXXS^M
+[1]+  Stopped                 ./handle_signals^M
+~/cs100/hw/hw4^M^M
+kdo009@well $ fg^M
+./handle_signals^M
+XXIXIXIXXXS^M
+Interrupt: 6^M
+Stop: 2^M
+Quit: 4^M
+~/cs100/hw/hw4^M^M
+kdo009@well $ ./my_shell^M
+> ls -l^M
+total 92^M
+-rw------- 1 kdo009 csmajs    11 Nov  5 03:11 ????^M
+-rwx------ 1 kdo009 csmajs 10495 Nov  5 03:26 handle_signals^M
+-rw------- 1 kdo009 csmajs  1860 Nov  5 02:59 handle_signals.cc^M
+-rw------- 1 kdo009 csmajs  3757 Nov  5 03:25 hw4.tgz^M
+-rw------- 1 kdo009 csmajs  1066 Nov  5 03:21 Makefile^M
+-rwx------ 1 kdo009 csmajs 10950 Nov  5 03:26 my_shell^M
+-rw------- 1 kdo009 csmajs  1934 Nov  5 03:24 my_shell.cc^M
+-rw------- 1 kdo009 csmajs     2 Nov  5 03:25 newOutputFile^M
+-rw------- 1 kdo009 csmajs  5377 Nov  5 01:50 String.cc^M
+-rw------- 1 kdo009 csmajs  1494 Nov  3 19:18 String.h^M
+-rw------- 1 kdo009 csmajs  9008 Nov  5 03:26 String.o^M
+-rwx------ 1 kdo009 csmajs 18223 Nov  5 03:26 testLinkedString^M
+-rw------- 1 kdo009 csmajs  2790 Nov  5 01:50 testLinkedString.cc^M
+-rw------- 1 kdo009 csmajs     0 Nov  5 03:26 typescript^M
+-rw------- 1 kdo009 csmajs   551 Nov  5 02:32 unix.txt^M
+-rw------- 1 kdo009 csmajs    11 Nov  5 03:11 wOutputFile^M
+-rw------- 1 kdo009 csmajs    11 Nov  5 03:11 X? ?2^M
+> ps^M
+  PID TTY          TIME CMD^M
+ 7972 pts/44   00:00:00 bash^M
+ 8131 pts/44   00:00:00 my_shell^M
+ 8136 pts/44   00:00:00 ps^M
+> tee newOutputFile^M
+hello^M
+hello^M
+this is a test file^M
+this is a test file^M
+for my shell program^M
+for my shell program^M
+> ^M
+~/cs100/hw/hw4^M^M
+kdo009@well $ more newOutputFile^M
+hello^M
+this is a test file^M
+for my shell program^M
+~/cs100/hw/hw4^M^M
+kdo009@well $ make print^M
+cat String.cc^M
+/*^M
+* Course: CS 100 Fall 2013 *^M
+* First Name: Kevin^M
+* Last Name: Do^M
+* Username: kdo009^M
+* email address: kdo009@well.cs.ucr.edu^M
+*^M
+* Assignment: Homework #4^M
+* I hereby certify that the contents of this file represent^M
+* my own original individual work. Nowhere herein is there^M
+* code from any outside resources such as another individual,^M
+* a website, or publishings unless specifically designated as^M
+* permissible by the instructor or TA. */^M
+^M
+//LinkedString.cc^M
+^M
+#include <iostream>^M
+#include "String.h"^M
+^M
+using namespace std;^M
+^M
+//Assignment1 runtime: O(n), o(2n)^M
+//Assignment2 runtime: O(n), o(2n)^M
+//Assignment1 funtion calls: 0^M
+//assignment2 function calls: n^M
+String::String( const char * s ) {^M
+        head = NULL;^M
+^M
+        int i;^M
+        for( i = 0; s[i] != '\0'; i++ ) { }^M
+^M
+        for( ; i >= 0; i-- ) {^M
+                ListNode* newnode = new ListNode(s[i], head);^M
+                head = newnode;^M
+        }^M
+}^M
+^M
+//Assignment1 runtime: O(n), o(n)^M
+//Assignment2 runtime: O(n), o(n)^M
+//assignment1 function calls: 0^M
+//assignment2 function calls: n^M
+String::String( const String & s ) {^M
+        if( s.head == NULL ) {^M
+                head = NULL;^M
+                return;^M
+        }^M
+^M
+        head = new ListNode( s.head->info, NULL );^M
+        ListNode* iterator = head;^M
+        ^M
+        for(ListNode* i = s.head->next; i != NULL; i = i -> next) {^M
+                iterator -> next = new ListNode( i->info, NULL );^M
+                iterator = iterator -> next;^M
+        }^M
+}^M
+^M
+//assignment1 runtime: O(n), o(n)^M
+//assignment2 runtime: O(n), o(2n)^M
+//assignment1 function calls: 0^M
+//assignment2 function calls: n^M
+String String::operator=( const String & s ) {^M
+        //delete everything in current String^M
+        for( ListNode* i = head; i != NULL; i = i->next ) {^M
+                ListNode* tmp = head->next;^M
+                delete head;^M
+                head = tmp;^M
+        }^M
+^M
+        if( s.head == NULL ) {^M
+                head = NULL;^M
+                return *this;^M
+        }^M
+^M
+        head = new ListNode( s.head->info, NULL );^M
+        ListNode* iterator = head;^M
+        ^M
+        for(ListNode* i = s.head->next; i != NULL; i = i -> next) {^M
+                iterator -> next = new ListNode( i->info, NULL );^M
+                iterator = iterator -> next;^M
+        }^M
+^M
+        return *this;^M
+}^M
+^M
+//assignment1 runtime: O(1), o(1)^M
+//assignment2 runtime: O(n), o(2n)^M
+//assignment1 function calls: 1^M
+//assignment2 function calls: 1^M
+char& String::operator[]( const int index ) {^M
+        if( !inBounds(index) ) {^M
+                cerr << "Error: out of bounds" << endl;^M
+                exit(1);^M
+        }^M
+^M
+        ListNode* iterator = head;^M
+^M
+        for( int i = 0; i < index; i++ ) {^M
+                iterator = iterator -> next;^M
+        }^M
+^M
+        return iterator -> info;^M
+}^M
+^M
+//assignment1 runtime: O(1), o(1)^M
+//assignment2 runtime: O(n), o(n)^M
+//assignment1 function calls: 0^M
+//assignment2 function calls: 0^M
+int String::length() const {^M
+        int i = 0;^M
+        for( ListNode* tmp = head; tmp -> next != NULL; tmp = tmp -> next ) {^M
+                i++;^M
+        }^M
+^M
+        return i;^M
+}^M
+^M
+//assignment1 runtime: O(n), o(n)^M
+//assignment2 runtime: O(n), o(n)^M
+//assignment1 function calls: 0^M
+//assignment2 function calls: 0^M
+int String::indexOf( char c ) const {^M
+        int i = 0;^M
+^M
+        for( ListNode* tmp = head; tmp != NULL; tmp = tmp -> next ) {^M
+                if( tmp -> info == c ) {^M
+                        return i;^M
+                }^M
+^M
+                i++;^M
+        }^M
+^M
+        return -1;^M
+}^M
+^M
+//assignment1 runtime: O(n), o(n)^M
+//assignment2 runtime: O(n), o(3n)^M
+//assignment1 function calls: 0^M
+//assignment2 function calls: 2^M
+bool String::operator==( const String & s ) const {^M
+        if( this -> length() != s.length() ) {^M
+                return false;^M
+        }^M
+^M
+        ListNode* iter = head;^M
+^M
+        for( ListNode* tmp = s.head; tmp != NULL; tmp = tmp -> next ) {^M
+                if( tmp -> info != iter -> info ) {^M
+                        return false;^M
+                }^M
+                iter = iter -> next;^M
+        }^M
+^M
+        return true;^M
+}^M
+^M
+//assignment1 runtime: O(n), o(n)^M
+//assignment2 runtime: O(n), o(2n)^M
+//assignment1 function calls: 1^M
+//assignment2 function calls: n^M
+String String::operator+( const String & s ) const {^M
+        String total(*this);^M
+^M
+        ListNode* i = total.head;^M
+        for( ; i -> next != NULL; i = i->next ) { }^M
+^M
+        for( ListNode* tmp = s.head; tmp != NULL; tmp = tmp -> next ) {^M
+                i -> next = new ListNode( tmp -> info, NULL );^M
+                i = i -> next;^M
+        }^M
+^M
+        return total;^M
+}^M
+^M
+//assignment1 runtime: O(n), o(n)^M
+//assignment2 runtime: O(n), o(2n)^M
+//assignment1 function calls: 0^M
+//assignment2 function calls: n^M
+String String::operator += ( const String & s ) {^M
+        ListNode* i = head;^M
+        for( ; i -> next != NULL; i = i->next ) { }^M
+^M
+        for( ListNode* tmp = s.head; tmp != NULL; tmp = tmp -> next ) {^M
+                i -> next = new ListNode( tmp -> info, NULL );^M
+                i = i -> next;^M
+        }^M
+^M
+        return *this;^M
+} ^M
+^M
+//assignment1 runtime: O(1), o(1)^M
+//assignment2 runtime: O(n), o(n)^M
+//assignment1 function calls: 0^M
+//assignment2 function calls: 0^M
+void String::print( ostream & out ) {^M
+        for( ListNode* i = head; i != NULL; i = i->next ) {^M
+                out << i -> info;^M
+        }^M
+}^M
+^M
+//assignment1 runtime: O(n), o(2n)^M
+//assignment2 runtime O(n), o(2n)^M
+//assignment1 function calls: 1^M
+//assignment2 function calls: 1^M
+void String::read( istream & in ) {^M
+        char tmp[999];^M
+        in >> tmp;^M
+        *this = String(tmp);^M
+}^M
+^M
+//assignment1 runtime: O(n), o(n)^M
+//assignment2 runtime: O(n), o(n)^M
+//assignment1 function calls: 0^M
+//assignment2 function calls: 0^M
+String::~String() {^M
+        for( ListNode* i = head; i != NULL; i = i->next ) {^M
+                ListNode* tmp = head->next;^M
+                delete head;^M
+                head = tmp;^M
+        }^M
+}^M
+^M
+//assignment1 runtime: O(1), o(1)^M
+//assignment2 runtime: O(n), o(n)^M
+//assignment1 function calls: 1^M
+//assignment2 function calls: 1^M
+ostream& operator<<( ostream & out, String str ) {^M
+        str.print(out);^M
+        return out;^M
+}^M
+^M
+//assignment1 runtime: O(n), o(2n)^M
+//assignment2 runtime: O(n), o(2n)^M
+//assignment1 function calls: 1^M
+//assignment2 function calls: 1^M
+istream& operator>>( istream & in, String& str ) {^M
+        str.read(in);^M
+        return in;^M
+}^M
+^M
+^M
+^M
+^M
+^M
+^M
+^M
+^M
+^M
+^M
+^M
+^M
+^M
+^M
+~/cs100/hw/hw4^M^M
+kdo009@well $ make strip^M
+strip -S testLinkedString handle_signals my_shell^M
+~/cs100/hw/hw4^M^M
+kdo009@well $ exit^M
+exit^M
+
+Script done on Tue 05 Nov 2013 03:28:26 AM PST
