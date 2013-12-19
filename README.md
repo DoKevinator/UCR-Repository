@@ -1,7 +1,7 @@
 UCR-Repository
 ==============
 
-All my source code for school projects/assignments. 
+All my source code for school projects/assignments at University of California, Riverside. 
 
 For all of those who are interested in the kind of assignments or projects I do in school.
 Please DO NOT plagiarize. 
